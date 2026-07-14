@@ -14,8 +14,10 @@ h2{font-size:20px;margin:34px 0 10px;color:var(--gold)}
 .meta{color:var(--muted);font-size:14px;margin-bottom:26px}
 ul,ol{padding-left:24px}
 li{margin:4px 0}
-.top{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin-bottom:28px}
+.top{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center}
 .top a{text-decoration:none;color:var(--muted)}
+.lbtn{background:none;border:1px solid #55303a;color:var(--muted);padding:3px 10px;cursor:pointer;font:13px Arial,Helvetica,sans-serif}
+.lbtn.active{color:var(--gold);border-color:var(--gold)}
 .logo{font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:19px;color:var(--cream);margin-bottom:6px}
 .logo span{color:var(--gold)}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:14px;color:var(--muted)}
@@ -23,8 +25,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 </head>
 <body>
 <div class="wrap">
-<div class="top"><a href="index.html">← Back to VidaSong</a></div>
+<div class="top"><a href="index.html" id="backlink">← VidaSong</a><span><button class="lbtn active" id="btn-en" onclick="setL('en')">EN</button> <button class="lbtn" id="btn-es" onclick="setL('es')">ES</button></span></div>
 <div class="logo">Vida<span>Song</span></div>
+
+<div id="lang-en">
 <h1>Revision &amp; Refund Policy</h1>
 <p class="meta">Effective date: July 14, 2026 · Last updated: July 14, 2026</p>
 
@@ -149,10 +153,152 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <p>Revision, cancellation, and refund requests should be sent to:</p>
 <p><strong><a href="mailto:orders@vidasong.com">orders@vidasong.com</a></strong></p>
 <p>Please include the customer's name, order email address, and a description of the requested resolution.</p>
+</div>
+
+<div id="lang-es" style="display:none">
+<h1>Política de Revisiones y Reembolsos</h1>
+<p class="meta">Fecha de entrada en vigor: 14 de julio de 2026 · Última actualización: 14 de julio de 2026</p>
+<p class="meta"><em>Esta traducción al español se ofrece para tu comodidad. Si existe alguna discrepancia, la versión en inglés es la legalmente vinculante.</em></p>
+
+<p>VidaSong crea productos artísticos personalizados a partir de la información y las preferencias creativas proporcionadas por cada cliente. Debido a que las canciones personalizadas normalmente no pueden revenderse a otro cliente, las revisiones, cancelaciones y reembolsos se gestionan conforme a la siguiente política.</p>
+
+<h2>1. Aprobación del plan de la canción</h2>
+<p>Antes del pago y la producción, VidaSong normalmente proporcionará un plan escrito de la canción que resume aspectos como:</p>
+<ul>
+<li>El destinatario</li>
+<li>La ocasión</li>
+<li>Los detalles importantes de la historia</li>
+<li>El idioma solicitado</li>
+<li>El género o la dirección musical prevista</li>
+<li>El mensaje emocional principal</li>
+</ul>
+<p>El cliente es responsable de revisar el plan y corregir nombres, fechas, relaciones, pronunciaciones, datos o instrucciones creativas inexactos antes de aprobarlo.</p>
+<p>La producción comienza solo después de que:</p>
+<ol>
+<li>El cliente aprueba el plan de la canción;</li>
+<li>VidaSong confirma el pedido; y</li>
+<li>Se recibe el pago requerido.</li>
+</ol>
+<p>Enviar el formulario de solicitud inicial no obliga al cliente a comprar una canción.</p>
+
+<h2>2. Revisiones incluidas</h2>
+<p>El número de revisiones incluidas lo determina el paquete o la cotización escrita seleccionada por el cliente.</p>
+<p>Una revisión significa una solicitud consolidada enviada después de recibir un borrador o la entrega inicial.</p>
+<p>Las revisiones incluidas pueden cubrir cambios razonables como:</p>
+<ul>
+<li>Corregir un error de hechos cometido por VidaSong</li>
+<li>Corregir la pronunciación de un nombre cuando el cliente proporcionó previamente una guía de pronunciación correcta</li>
+<li>Corregir un error de ortografía</li>
+<li>Reemplazar o ajustar un número limitado de versos</li>
+<li>Eliminar una referencia no intencionada</li>
+<li>Hacer un ajuste moderado de redacción, balance o énfasis</li>
+<li>Corregir un defecto técnico en un archivo entregado</li>
+</ul>
+<p>Los clientes deben incluir todos los cambios solicitados en un solo mensaje siempre que sea posible. Los mensajes separados sobre la misma entrega pueden tratarse como una sola ronda de revisión.</p>
+
+<h2>3. Cambios que no son revisiones estándar</h2>
+<p>Las siguientes solicitudes pueden requerir una tarifa adicional, una tarifa de rehechura mayor o un pedido nuevo:</p>
+<ul>
+<li>Cambiar el destinatario</li>
+<li>Cambiar la ocasión</li>
+<li>Cambiar el idioma después de que comience la producción</li>
+<li>Cambiar a un género sustancialmente diferente</li>
+<li>Cambiar la dirección vocal solicitada después de la producción</li>
+<li>Reemplazar la mayor parte o la totalidad de la historia aprobada</li>
+<li>Agregar información nueva sustancial que no estaba incluida en el plan aprobado</li>
+<li>Solicitar una reescritura completa de la letra después de aprobar la dirección original</li>
+<li>Revertir preferencias creativas que el cliente aprobó previamente</li>
+<li>Solicitar versiones adicionales más allá del paquete comprado</li>
+<li>Corregir un error que se originó en información inexacta proporcionada por el cliente</li>
+</ul>
+<p>VidaSong explicará cualquier cargo adicional antes de comenzar trabajo fuera del alcance de revisiones del paquete comprado.</p>
+
+<h2>4. Plazo para revisiones</h2>
+<p>Las solicitudes de revisión normalmente deben enviarse dentro de los <strong>siete días calendario</strong> posteriores a la entrega correspondiente.</p>
+<p>Si no se recibe ninguna solicitud de revisión durante ese período, el pedido puede considerarse aceptado y completo.</p>
+<p>VidaSong puede considerar solicitudes posteriores cuando sea práctico, pero las revisiones tardías pueden requerir una tarifa adicional y la disponibilidad no está garantizada.</p>
+
+<h2>5. Tiempo de entrega de revisiones</h2>
+<p>La mayoría de las revisiones estándar se completan en aproximadamente dos a tres días hábiles.</p>
+<p>Esto es una estimación, no una garantía. Las revisiones complicadas, las demoras del cliente, los problemas técnicos o un volumen de pedidos inusualmente alto pueden requerir tiempo adicional.</p>
+
+<h2>6. Cancelaciones antes de la producción</h2>
+<p>Un cliente puede cancelar y recibir un reembolso completo si:</p>
+<ul>
+<li>El pago se ha realizado; y</li>
+<li>VidaSong no ha comenzado el desarrollo de la letra, la generación de música, la producción de arte u otro trabajo de producción personalizado.</li>
+</ul>
+<p>El cliente debe solicitar la cancelación lo antes posible escribiendo a <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>.</p>
+
+<h2>7. Cancelaciones después de que comienza la producción</h2>
+<p>Una vez que la producción personalizada ha comenzado, los pagos generalmente no son reembolsables porque ya se han dedicado tiempo, trabajo creativo y recursos de producción a un pedido que no puede revenderse.</p>
+<p>Un cambio de opinión, un cambio de ocasión, un desacuerdo del destinatario o la preferencia por una dirección creativa diferente normalmente no califican para un reembolso después de que comienza la producción.</p>
+<p>El remedio disponible normalmente serán las revisiones incluidas con el paquete comprado.</p>
+
+<h2>8. Cuándo se proporcionará un reembolso</h2>
+<p>VidaSong proporcionará un reembolso apropiado, total o parcial, cuando:</p>
+<ul>
+<li>VidaSong no pueda producir o entregar el servicio comprado;</li>
+<li>Se haya procesado un pago duplicado;</li>
+<li>VidaSong incumpla materialmente el plan aprobado de la canción y no pueda corregir razonablemente el problema mediante las revisiones incluidas; o</li>
+<li>La ley aplicable exija un reembolso.</li>
+</ul>
+<p>El monto reembolsado dependerá de la parte del servicio que no se haya proporcionado correctamente.</p>
+
+<h2>9. Situaciones que normalmente no califican para un reembolso</h2>
+<p>Normalmente no se proporcionan reembolsos únicamente porque:</p>
+<ul>
+<li>El destinatario no reaccionó como se esperaba</li>
+<li>El cliente ya no necesita la canción</li>
+<li>El evento correspondiente fue cancelado o reprogramado</li>
+<li>El cliente proporcionó datos o información de pronunciación incorrectos</li>
+<li>El cliente cambió su género, idioma, vocalista o historia preferidos después de la aprobación</li>
+<li>El cliente prefiere una interpretación artística diferente aunque la canción entregada siga sustancialmente el plan aprobado</li>
+<li>Una plataforma de redes sociales, un servicio de música o un tercero rechaza o limita el uso de la canción</li>
+<li>El cliente no descargó ni conservó los archivos entregados</li>
+</ul>
+<p>La música personalizada es subjetiva. VidaSong no garantiza una respuesta emocional, una preferencia musical o una reacción particular del destinatario.</p>
+
+<h2>10. Retrasos en la entrega</h2>
+<p>Las fechas de entrega cotizadas son estimaciones de buena fe, a menos que VidaSong acuerde expresamente por escrito una fecha límite garantizada.</p>
+<p>Una demora causada por el cliente, incluida la aprobación tardía, la información incompleta o los comentarios de revisión tardíos, extenderá la fecha de entrega prevista.</p>
+<p>Si VidaSong anticipa un retraso sustancial, se comunicará con el cliente y proporcionará una estimación revisada.</p>
+<p>Si VidaSong no puede entregar el pedido dentro de un período razonable y el cliente no acepta una extensión, el cliente puede solicitar un reembolso por el servicio no entregado.</p>
+
+<h2>11. Pedidos urgentes</h2>
+<p>Un pedido urgente se acepta solo cuando VidaSong confirma la fecha límite por escrito y se ha pagado la tarifa de urgencia correspondiente.</p>
+<p>Pagar o solicitar un servicio acelerado sin confirmación escrita no crea una fecha de entrega garantizada.</p>
+
+<h2>12. Descarga y conservación de archivos</h2>
+<p>Los clientes son responsables de descargar y almacenar de forma segura los archivos entregados de canciones, arte, letras y videos.</p>
+<p>VidaSong puede intentar reenviar archivos completados recientemente, pero el almacenamiento permanente de archivos y el reenvío indefinido no están garantizados.</p>
+
+<h2>13. Contracargos y disputas de pago</h2>
+<p>Los clientes deben comunicarse con VidaSong en <a href="mailto:orders@vidasong.com">orders@vidasong.com</a> antes de iniciar una disputa de pago, para que VidaSong tenga la oportunidad de investigar y resolver el problema.</p>
+<p>Nada en esta sección limita derechos que no pueden renunciarse legalmente.</p>
+
+<h2>14. Contacto</h2>
+<p>Las solicitudes de revisión, cancelación y reembolso deben enviarse a:</p>
+<p><strong><a href="mailto:orders@vidasong.com">orders@vidasong.com</a></strong></p>
+<p>Incluye el nombre del cliente, el correo electrónico del pedido y una descripción de la resolución solicitada.</p>
+</div>
 
 <footer>
-<a href="index.html">VidaSong</a> · <a href="terms.html">Terms of Service</a> · <a href="privacy.html">Privacy Policy</a> · <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>
+<a href="index.html" class="pol" data-base="index.html">VidaSong</a> · <a href="terms.html" class="pol" data-base="terms.html">Terms of Service</a> · <a href="privacy.html" class="pol" data-base="privacy.html">Privacy Policy</a> · <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>
 </footer>
 </div>
+<script>
+function setL(l){
+document.getElementById('lang-en').style.display=l==='en'?'':'none';
+document.getElementById('lang-es').style.display=l==='es'?'':'none';
+document.getElementById('btn-en').classList.toggle('active',l==='en');
+document.getElementById('btn-es').classList.toggle('active',l==='es');
+document.documentElement.lang=l;
+document.querySelectorAll('a.pol').forEach(a=>{const b=a.getAttribute('data-base');a.setAttribute('href',l==='es'?b+'?lang=es':b);});
+document.getElementById('backlink').setAttribute('href',l==='es'?'index.html?lang=es':'index.html');
+try{const u=new URL(location);if(l==='es'){u.searchParams.set('lang','es')}else{u.searchParams.delete('lang')}history.replaceState(null,'',u)}catch(e){}
+}
+try{if(new URLSearchParams(location.search).get('lang')==='es')setL('es');}catch(e){}
+</script>
 </body>
 </html>

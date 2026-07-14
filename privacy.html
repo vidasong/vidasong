@@ -15,8 +15,10 @@ h3{font-size:17px;margin:22px 0 8px}
 .meta{color:var(--muted);font-size:14px;margin-bottom:26px}
 ul,ol{padding-left:24px}
 li{margin:4px 0}
-.top{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin-bottom:28px}
+.top{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center}
 .top a{text-decoration:none;color:var(--muted)}
+.lbtn{background:none;border:1px solid #55303a;color:var(--muted);padding:3px 10px;cursor:pointer;font:13px Arial,Helvetica,sans-serif}
+.lbtn.active{color:var(--gold);border-color:var(--gold)}
 .logo{font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:19px;color:var(--cream);margin-bottom:6px}
 .logo span{color:var(--gold)}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:14px;color:var(--muted)}
@@ -24,8 +26,10 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 </head>
 <body>
 <div class="wrap">
-<div class="top"><a href="index.html">← Back to VidaSong</a></div>
+<div class="top"><a href="index.html" id="backlink">← VidaSong</a><span><button class="lbtn active" id="btn-en" onclick="setL('en')">EN</button> <button class="lbtn" id="btn-es" onclick="setL('es')">ES</button></span></div>
 <div class="logo">Vida<span>Song</span></div>
+
+<div id="lang-en">
 <h1>Privacy Policy</h1>
 <p class="meta">Effective date: July 14, 2026 · Last updated: July 14, 2026</p>
 
@@ -34,7 +38,6 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 
 <h2>1. Information We Collect</h2>
 <p>VidaSong may collect the following categories of information.</p>
-
 <h3>Contact information</h3>
 <p>This may include:</p>
 <ul>
@@ -43,7 +46,6 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <li>Your preferred language</li>
 <li>Other contact information you voluntarily provide</li>
 </ul>
-
 <h3>Song-request information</h3>
 <p>To create a personalized song, you may provide information about yourself, the song recipient, or other individuals, including:</p>
 <ul>
@@ -58,7 +60,6 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <li>Information you would like included in or excluded from the song</li>
 </ul>
 <p>Please do not submit Social Security numbers, government identification numbers, financial account information, medical records, passwords, or other information that is not reasonably necessary to create your order.</p>
-
 <h3>Order and payment information</h3>
 <p>VidaSong may collect information about:</p>
 <ul>
@@ -69,10 +70,8 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <li>Refunds or disputes</li>
 </ul>
 <p>Payments are processed through the third-party payment provider identified at checkout. VidaSong does not receive or store your complete payment-card number.</p>
-
 <h3>Communications</h3>
 <p>VidaSong may retain emails, revision requests, approvals, customer-service communications, and other messages related to an order.</p>
-
 <h3>Website and technical information</h3>
 <p>Website hosts, security providers, analytics services, and advertising platforms may automatically collect limited technical information, such as:</p>
 <ul>
@@ -211,10 +210,208 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <h2>14. Contact</h2>
 <p>Questions or requests regarding this Privacy Policy may be sent to:</p>
 <p><strong>VidaSong</strong><br>Email: <a href="mailto:orders@vidasong.com">orders@vidasong.com</a></p>
+</div>
+
+<div id="lang-es" style="display:none">
+<h1>Política de Privacidad</h1>
+<p class="meta">Fecha de entrada en vigor: 14 de julio de 2026 · Última actualización: 14 de julio de 2026</p>
+<p class="meta"><em>Esta traducción al español se ofrece para tu comodidad. Si existe alguna discrepancia, la versión en inglés es la legalmente vinculante.</em></p>
+
+<p>VidaSong respeta la privacidad de sus clientes y de los visitantes de su sitio web. Esta Política de Privacidad explica qué información recopila VidaSong, por qué se recopila, cómo se utiliza y las opciones disponibles para ti.</p>
+<p>Al visitar vidasong.com, enviar una solicitud de canción, comprar un servicio o comunicarte de otra manera con VidaSong, reconoces las prácticas descritas en esta Política de Privacidad.</p>
+
+<h2>1. Información que recopilamos</h2>
+<p>VidaSong puede recopilar las siguientes categorías de información.</p>
+<h3>Información de contacto</h3>
+<p>Puede incluir:</p>
+<ul>
+<li>Tu nombre</li>
+<li>Tu correo electrónico</li>
+<li>Tu idioma preferido</li>
+<li>Otra información de contacto que proporciones voluntariamente</li>
+</ul>
+<h3>Información de la solicitud de canción</h3>
+<p>Para crear una canción personalizada, puedes proporcionar información sobre ti, el destinatario de la canción u otras personas, incluyendo:</p>
+<ul>
+<li>Nombres y pronunciaciones de nombres</li>
+<li>Relaciones</li>
+<li>Cumpleaños, aniversarios y otras fechas importantes</li>
+<li>Recuerdos personales e historias familiares</li>
+<li>Lugares, logros, tradiciones y eventos significativos</li>
+<li>Preferencias culturales, religiosas, musicales y de idioma</li>
+<li>Fotografías</li>
+<li>Referencias de audio o pronunciación</li>
+<li>Información que deseas incluir o excluir de la canción</li>
+</ul>
+<p>Por favor no envíes números de Seguro Social, números de identificación oficial, información de cuentas financieras, registros médicos, contraseñas ni otra información que no sea razonablemente necesaria para crear tu pedido.</p>
+<h3>Información del pedido y del pago</h3>
+<p>VidaSong puede recopilar información sobre:</p>
+<ul>
+<li>El paquete o servicio seleccionado</li>
+<li>El monto pagado</li>
+<li>El estado del pago</li>
+<li>Las fechas del pedido</li>
+<li>Reembolsos o disputas</li>
+</ul>
+<p>Los pagos se procesan a través del proveedor de pagos externo identificado al momento del pago. VidaSong no recibe ni almacena el número completo de tu tarjeta.</p>
+<h3>Comunicaciones</h3>
+<p>VidaSong puede conservar correos electrónicos, solicitudes de revisión, aprobaciones, comunicaciones de atención al cliente y otros mensajes relacionados con un pedido.</p>
+<h3>Información técnica y del sitio web</h3>
+<p>Los proveedores de alojamiento, seguridad, analítica y publicidad pueden recopilar automáticamente información técnica limitada, como:</p>
+<ul>
+<li>Dirección IP</li>
+<li>Tipo de navegador y dispositivo</li>
+<li>Página de referencia</li>
+<li>Páginas visitadas</li>
+<li>Ubicación aproximada derivada de una dirección IP</li>
+<li>Fechas y horas de actividad en el sitio</li>
+<li>Cookies, píxeles o identificadores similares</li>
+</ul>
+
+<h2>2. Cómo usamos la información</h2>
+<p>VidaSong puede usar la información recopilada para:</p>
+<ul>
+<li>Revisar y responder solicitudes de canciones</li>
+<li>Preparar un plan de canción propuesto</li>
+<li>Crear, editar, revisar y entregar canciones personalizadas</li>
+<li>Generar arte, hojas de letras o videos incluidos con un pedido</li>
+<li>Procesar pagos y reembolsos</li>
+<li>Comunicarnos sobre un pedido</li>
+<li>Brindar atención al cliente</li>
+<li>Detectar fraude, abuso o solicitudes prohibidas</li>
+<li>Mantener registros comerciales, fiscales y de transacciones</li>
+<li>Mejorar los servicios y el proceso de pedidos de VidaSong</li>
+<li>Cumplir con obligaciones legales</li>
+<li>Proteger los derechos, la seguridad y la propiedad de VidaSong, sus clientes y otras personas</li>
+</ul>
+<p>VidaSong no usa la historia familiar privada, las fotografías, la canción completada ni el testimonio de un cliente en publicidad sin permiso separado.</p>
+
+<h2>3. Producción asistida por IA</h2>
+<p>VidaSong utiliza una combinación de escritura humana, edición, dirección creativa y herramientas de producción asistidas por inteligencia artificial.</p>
+<p>La información de un plan de canción aprobado, letras personalizadas, guías de pronunciación e instrucciones musicales puede enviarse a herramientas de producción de terceros cuando sea necesario para crear un pedido.</p>
+<p>VidaSong intenta limitar la información enviada a estas herramientas a lo razonablemente necesario para la producción. Los clientes no deben proporcionar información confidencial o altamente sensible que no sea necesaria para la canción.</p>
+
+<h2>4. Cómo puede compartirse la información</h2>
+<p>VidaSong puede divulgar información a proveedores de servicios que ayudan a operar el negocio, incluidos proveedores de:</p>
+<ul>
+<li>Alojamiento web</li>
+<li>Procesamiento de formularios</li>
+<li>Entrega y almacenamiento de correo electrónico</li>
+<li>Almacenamiento en la nube</li>
+<li>Generación de música y producción de medios</li>
+<li>Procesamiento de pagos</li>
+<li>Analítica web</li>
+<li>Publicidad y medición de conversiones</li>
+<li>Seguridad, prevención de fraude, contabilidad o apoyo legal</li>
+</ul>
+<p>Estos proveedores pueden procesar la información según sus propias políticas de privacidad y términos.</p>
+<p>VidaSong también puede divulgar información cuando sea razonablemente necesario para:</p>
+<ul>
+<li>Cumplir con la ley aplicable, procesos legales o solicitudes gubernamentales</li>
+<li>Investigar fraude, incidentes de seguridad o conducta prohibida</li>
+<li>Hacer cumplir los Términos de Servicio de VidaSong</li>
+<li>Proteger la seguridad, los derechos o la propiedad de VidaSong o de otra persona</li>
+<li>Completar una fusión, venta, reestructuración o transferencia del negocio</li>
+</ul>
+
+<h2>5. Publicidad, cookies y tecnologías similares</h2>
+<p>VidaSong puede usar cookies, píxeles y tecnologías similares para:</p>
+<ul>
+<li>Funcionalidad del sitio web</li>
+<li>Seguridad</li>
+<li>Medición de tráfico</li>
+<li>Medición de publicidad</li>
+<li>Entender si un anuncio resultó en una visita al sitio o un pedido</li>
+</ul>
+<p>Cuando las herramientas publicitarias están habilitadas, información limitada de uso del sitio puede divulgarse a proveedores de publicidad como Meta.</p>
+<p>VidaSong no vende información personal a cambio de un pago monetario directo.</p>
+<p>Los controles del navegador y la configuración de las plataformas publicitarias pueden permitirte limitar ciertas cookies o la publicidad personalizada. Desactivar estas tecnologías puede afectar algunas funciones del sitio.</p>
+
+<h2>6. Historias, canciones y permiso promocional</h2>
+<p>Las solicitudes de los clientes y los proyectos completados son privados por defecto.</p>
+<p>VidaSong no publicará ni usará intencionalmente de un cliente:</p>
+<ul>
+<li>Su historia</li>
+<li>Sus fotografías</li>
+<li>Su canción</li>
+<li>Su video</li>
+<li>Su nombre</li>
+<li>Su reacción</li>
+<li>Su reseña</li>
+<li>Su testimonio</li>
+</ul>
+<p>con fines publicitarios o de portafolio, a menos que el cliente proporcione un permiso separado y afirmativo.</p>
+<p>El permiso para usar un elemento no autoriza automáticamente el uso de todos los demás materiales del cliente.</p>
+<p>Un cliente puede retirar el permiso para uso promocional futuro escribiendo a <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>. El retiro puede no eliminar materiales de anuncios, materiales impresos, publicaciones archivadas o campañas que ya fueron publicados o distribuidos antes de recibir la solicitud.</p>
+
+<h2>7. Conservación de datos</h2>
+<p>VidaSong conserva la información solo el tiempo razonablemente necesario para:</p>
+<ul>
+<li>Completar y revisar un pedido</li>
+<li>Reenviar archivos completados recientemente</li>
+<li>Mantener registros de transacciones y fiscales</li>
+<li>Resolver disputas</li>
+<li>Prevenir fraude</li>
+<li>Cumplir obligaciones legales</li>
+</ul>
+<p>Las fotografías de trabajo, referencias de audio y archivos de producción generalmente pueden conservarse hasta 12 meses después de la entrega final y luego pueden eliminarse.</p>
+<p>Los registros de pedidos, pagos, consentimientos y transacciones pueden conservarse por más tiempo cuando sea razonablemente necesario para fines contables, fiscales, legales o de resolución de disputas.</p>
+<p>Los clientes pueden solicitar una eliminación anticipada, sujeta a requisitos legales, contables, de prevención de fraude y de mantenimiento de registros.</p>
+
+<h2>8. Seguridad</h2>
+<p>VidaSong utiliza salvaguardas administrativas y técnicas razonables destinadas a proteger la información del cliente.</p>
+<p>Sin embargo, ningún sitio web, servicio de correo, plataforma de almacenamiento o método de transmisión por Internet puede garantizarse como completamente seguro. Los clientes deben evitar enviar información que no sea necesaria para su pedido.</p>
+
+<h2>9. Tus opciones y solicitudes</h2>
+<p>Puedes contactar a VidaSong para solicitar que:</p>
+<ul>
+<li>Proporcione información sobre los datos personales asociados a tu pedido</li>
+<li>Corrija información inexacta</li>
+<li>Elimine información que ya no sea necesaria</li>
+<li>Retire el permiso promocional</li>
+<li>Detenga las comunicaciones de marketing no esenciales</li>
+</ul>
+<p>Las solicitudes pueden enviarse a <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>.</p>
+<p>VidaSong puede necesitar verificar tu identidad antes de completar una solicitud. Cierta información puede conservarse cuando lo exijan fines legales, fiscales, de seguridad, de prevención de fraude o de registro de transacciones.</p>
+
+<h2>10. Información sobre otras personas</h2>
+<p>Cuando envías información, fotografías, grabaciones o historias sobre otra persona, declaras que tienes el derecho o el permiso apropiado para proporcionar ese material para el servicio solicitado.</p>
+<p>Debes tener especial cuidado al enviar información o fotografías de menores. La persona que realiza el pedido debe tener la autoridad para autorizar su uso.</p>
+
+<h2>11. Privacidad de menores</h2>
+<p>El sitio web y los servicios de pedidos de VidaSong están destinados a adultos y no están dirigidos a menores de 13 años.</p>
+<p>VidaSong no acepta a sabiendas pedidos realizados por menores de 13 años. Si VidaSong descubre que un menor de 13 años envió información personal sin el consentimiento parental apropiado, tomará medidas razonables para eliminarla.</p>
+
+<h2>12. Operaciones en Estados Unidos</h2>
+<p>VidaSong opera desde Illinois, Estados Unidos.</p>
+<p>La información puede procesarse y almacenarse en Estados Unidos y en otros lugares donde operan los proveedores de servicios de VidaSong.</p>
+<p>Los clientes fuera de Estados Unidos deben entender que las leyes de privacidad de esos lugares pueden diferir de las de su país.</p>
+
+<h2>13. Cambios a esta política</h2>
+<p>VidaSong puede actualizar esta Política de Privacidad a medida que cambien el servicio, la tecnología o los requisitos legales.</p>
+<p>La versión actualizada se publicará con una fecha de "Última actualización" revisada. Los cambios importantes también pueden comunicarse a través del sitio web o por correo electrónico cuando sea apropiado.</p>
+
+<h2>14. Contacto</h2>
+<p>Las preguntas o solicitudes sobre esta Política de Privacidad pueden enviarse a:</p>
+<p><strong>VidaSong</strong><br>Correo: <a href="mailto:orders@vidasong.com">orders@vidasong.com</a></p>
+</div>
 
 <footer>
-<a href="index.html">VidaSong</a> · <a href="terms.html">Terms of Service</a> · <a href="refund-policy.html">Revision &amp; Refund Policy</a> · <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>
+<a href="index.html" class="pol" data-base="index.html">VidaSong</a> · <a href="terms.html" class="pol" data-base="terms.html">Terms of Service</a> · <a href="refund-policy.html" class="pol" data-base="refund-policy.html">Revision &amp; Refund Policy</a> · <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>
 </footer>
 </div>
+<script>
+function setL(l){
+document.getElementById('lang-en').style.display=l==='en'?'':'none';
+document.getElementById('lang-es').style.display=l==='es'?'':'none';
+document.getElementById('btn-en').classList.toggle('active',l==='en');
+document.getElementById('btn-es').classList.toggle('active',l==='es');
+document.documentElement.lang=l;
+document.querySelectorAll('a.pol').forEach(a=>{const b=a.getAttribute('data-base');a.setAttribute('href',l==='es'?b+'?lang=es':b);});
+document.getElementById('backlink').setAttribute('href',l==='es'?'index.html?lang=es':'index.html');
+try{const u=new URL(location);if(l==='es'){u.searchParams.set('lang','es')}else{u.searchParams.delete('lang')}history.replaceState(null,'',u)}catch(e){}
+}
+try{if(new URLSearchParams(location.search).get('lang')==='es')setL('es');}catch(e){}
+</script>
 </body>
 </html>

@@ -14,8 +14,10 @@ h2{font-size:20px;margin:34px 0 10px;color:var(--gold)}
 .meta{color:var(--muted);font-size:14px;margin-bottom:26px}
 ul,ol{padding-left:24px}
 li{margin:4px 0}
-.top{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin-bottom:28px}
+.top{font-family:Arial,Helvetica,sans-serif;font-size:14px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:center}
 .top a{text-decoration:none;color:var(--muted)}
+.lbtn{background:none;border:1px solid #55303a;color:var(--muted);padding:3px 10px;cursor:pointer;font:13px Arial,Helvetica,sans-serif}
+.lbtn.active{color:var(--gold);border-color:var(--gold)}
 .logo{font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:19px;color:var(--cream);margin-bottom:6px}
 .logo span{color:var(--gold)}
 footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:14px;color:var(--muted)}
@@ -23,13 +25,15 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 </head>
 <body>
 <div class="wrap">
-<div class="top"><a href="index.html">← Back to VidaSong</a></div>
+<div class="top"><a href="index.html" id="backlink">← VidaSong</a><span><button class="lbtn active" id="btn-en" onclick="setL('en')">EN</button> <button class="lbtn" id="btn-es" onclick="setL('es')">ES</button></span></div>
 <div class="logo">Vida<span>Song</span></div>
+
+<div id="lang-en">
 <h1>Terms of Service</h1>
 <p class="meta">Effective date: July 14, 2026 · Last updated: July 14, 2026</p>
 
 <p>These Terms of Service govern access to vidasong.com and the purchase and use of services provided under the VidaSong name.</p>
-<p>By submitting an order, approving a song plan, making a payment, or using a completed VidaSong product, you agree to these Terms of Service, the <a href="privacy.html">VidaSong Privacy Policy</a>, and the <a href="refund-policy.html">VidaSong Revision and Refund Policy</a>.</p>
+<p>By submitting an order, approving a song plan, making a payment, or using a completed VidaSong product, you agree to these Terms of Service, the <a href="privacy.html" class="pol" data-base="privacy.html">VidaSong Privacy Policy</a>, and the <a href="refund-policy.html" class="pol" data-base="refund-policy.html">VidaSong Revision and Refund Policy</a>.</p>
 
 <h2>1. Eligibility</h2>
 <p>You must be at least 18 years old and legally capable of entering into an agreement to purchase a VidaSong service.</p>
@@ -147,7 +151,7 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <p>VidaSong may deliver files by email, private link, cloud folder, or another reasonable digital method.</p>
 
 <h2>10. Revisions, Cancellations, and Refunds</h2>
-<p>All revisions, cancellations, and refunds are governed by the <a href="refund-policy.html">VidaSong Revision and Refund Policy</a>, which is incorporated into these Terms.</p>
+<p>All revisions, cancellations, and refunds are governed by the <a href="refund-policy.html" class="pol" data-base="refund-policy.html">VidaSong Revision and Refund Policy</a>, which is incorporated into these Terms.</p>
 <p>The customer agrees that personalized creative work may become nonrefundable once production begins.</p>
 
 <h2>11. Rights in Completed Deliverables</h2>
@@ -262,10 +266,265 @@ footer{margin-top:56px;padding-top:18px;border-top:1px solid #55303a;font-size:1
 <h2>24. Contact</h2>
 <p>Questions about these Terms may be sent to:</p>
 <p><strong>VidaSong</strong><br>Email: <a href="mailto:orders@vidasong.com">orders@vidasong.com</a></p>
+</div>
+
+<div id="lang-es" style="display:none">
+<h1>Términos de Servicio</h1>
+<p class="meta">Fecha de entrada en vigor: 14 de julio de 2026 · Última actualización: 14 de julio de 2026</p>
+<p class="meta"><em>Esta traducción al español se ofrece para tu comodidad. Si existe alguna discrepancia, la versión en inglés es la legalmente vinculante.</em></p>
+
+<p>Estos Términos de Servicio rigen el acceso a vidasong.com y la compra y el uso de los servicios proporcionados bajo el nombre VidaSong.</p>
+<p>Al enviar un pedido, aprobar un plan de canción, realizar un pago o usar un producto VidaSong completado, aceptas estos Términos de Servicio, la <a href="privacy.html?lang=es">Política de Privacidad</a> de VidaSong y la <a href="refund-policy.html?lang=es">Política de Revisiones y Reembolsos</a> de VidaSong.</p>
+
+<h2>1. Elegibilidad</h2>
+<p>Debes tener al menos 18 años y capacidad legal para celebrar un acuerdo para comprar un servicio de VidaSong.</p>
+<p>Si realizas un pedido en nombre de otra persona, familia, organización o empresa, declaras que tienes autoridad para hacerlo.</p>
+
+<h2>2. Servicios</h2>
+<p>VidaSong produce productos creativos digitales personalizados, que pueden incluir:</p>
+<ul>
+<li>Canciones personalizadas</li>
+<li>Letras personalizadas</li>
+<li>Arte de portada</li>
+<li>Hojas de letras imprimibles</li>
+<li>Videos con letra</li>
+<li>Presentaciones de fotos</li>
+<li>Versiones de video para redes sociales</li>
+<li>Otros materiales digitales relacionados identificados en un paquete o cotización escrita</li>
+</ul>
+<p>Los entregables específicos, el precio, las revisiones incluidas y la fecha estimada de entrega se determinan por el paquete seleccionado y cualquier confirmación escrita del pedido.</p>
+<p>A menos que se indique expresamente lo contrario, los productos de VidaSong se entregan digitalmente y no incluyen un producto físico.</p>
+
+<h2>3. Producción asistida por IA</h2>
+<p>VidaSong utiliza narración humana, escritura de letras, edición, dirección creativa, control de calidad y herramientas de producción asistidas por inteligencia artificial.</p>
+<p>El cliente reconoce que:</p>
+<ul>
+<li>Algunos elementos musicales, vocales, visuales o técnicos pueden producirse mediante inteligencia artificial generativa;</li>
+<li>Los sistemas de inteligencia artificial pueden producir pronunciaciones imperfectas o resultados creativos inesperados;</li>
+<li>VidaSong revisa y selecciona los resultados, pero no puede garantizar que cada elemento generado sea completamente único;</li>
+<li>Pueden ocurrir similitudes entre obras generadas de forma independiente;</li>
+<li>El material generado por inteligencia artificial puede no calificar para protección de derechos de autor en todas las jurisdicciones; y</li>
+<li>VidaSong no promete que una obra completada pueda registrarse como derecho de autor ni tratarse como propiedad intelectual de titularidad exclusiva.</li>
+</ul>
+
+<h2>4. Proceso de solicitud y aprobación</h2>
+<p>El proceso normal de pedido es:</p>
+<ol>
+<li>El cliente envía una solicitud de canción;</li>
+<li>VidaSong revisa la solicitud;</li>
+<li>VidaSong puede pedir aclaraciones;</li>
+<li>VidaSong proporciona o confirma un plan de canción propuesto;</li>
+<li>El cliente aprueba el plan;</li>
+<li>VidaSong envía instrucciones de pago;</li>
+<li>La producción comienza después del pago; y</li>
+<li>VidaSong entrega los materiales comprados.</li>
+</ol>
+<p>VidaSong puede rechazar una solicitud antes de aceptar el pago.</p>
+<p>Enviar un formulario de solicitud no garantiza la aceptación, la disponibilidad, una fecha límite particular ni un resultado creativo particular.</p>
+
+<h2>5. Responsabilidades del cliente</h2>
+<p>El cliente es responsable de:</p>
+<ul>
+<li>Proporcionar información precisa</li>
+<li>Revisar nombres, fechas, hechos y pronunciaciones</li>
+<li>Revisar el plan de canción propuesto</li>
+<li>Responder a las preguntas necesarias</li>
+<li>Proporcionar comentarios dentro de un período razonable</li>
+<li>Descargar y conservar los archivos entregados</li>
+<li>Asegurarse de que los materiales enviados puedan usarse legalmente</li>
+</ul>
+<p>VidaSong no es responsable de errores que resulten de información del cliente inexacta, incompleta, engañosa o aprobada indebidamente.</p>
+
+<h2>6. Permiso para usar los materiales enviados</h2>
+<p>El cliente conserva los derechos que tenga sobre los materiales enviados a VidaSong.</p>
+<p>Al enviar nombres, historias, fotografías, grabaciones, textos u otros materiales, el cliente otorga a VidaSong un permiso limitado para:</p>
+<ul>
+<li>Revisar los materiales;</li>
+<li>Almacenarlos y procesarlos;</li>
+<li>Editarlos o adaptarlos;</li>
+<li>Enviar las partes necesarias a proveedores de servicios de producción; y</li>
+<li>Usarlos para crear, revisar y entregar el servicio comprado.</li>
+</ul>
+<p>Este permiso existe únicamente para cumplir el pedido, mantener los registros necesarios, resolver disputas y realizar otros usos autorizados por el cliente.</p>
+<p>El cliente declara que:</p>
+<ul>
+<li>Es dueño de los materiales enviados o tiene el permiso apropiado para usarlos;</li>
+<li>El uso solicitado no viola ilegalmente la privacidad, la imagen, los derechos de autor, las marcas u otros derechos de otra persona;</li>
+<li>Tiene la autoridad apropiada al enviar materiales que involucren a un menor; y</li>
+<li>No ha proporcionado a sabiendas información falsa o difamatoria.</li>
+</ul>
+
+<h2>7. Solicitudes prohibidas</h2>
+<p>VidaSong puede rechazar, detener o cancelar un pedido que involucre:</p>
+<ul>
+<li>Imitación no autorizada de la voz de celebridades o figuras públicas</li>
+<li>Clonación o imitación no autorizada de la voz de una persona privada</li>
+<li>Solicitudes de copiar una canción, melodía, grabación o letra con derechos de autor existentes</li>
+<li>Solicitudes de imitar a un artista vivo con tanta exactitud que el resultado pueda ser engañoso</li>
+<li>Acoso, amenazas, humillación o difamación</li>
+<li>Discurso de odio o discriminación ilegal</li>
+<li>Fraude, suplantación de identidad o conducta engañosa</li>
+<li>Contenido sexualmente explotador</li>
+<li>Contenido sexual que involucre a menores</li>
+<li>Actividad ilegal</li>
+<li>Invasión de la privacidad</li>
+<li>Contenido que VidaSong razonablemente considere inseguro, abusivo, explotador o ilegal</li>
+</ul>
+<p>Si un cliente ocultó la verdadera naturaleza de una solicitud prohibida, VidaSong puede cancelar el pedido. La elegibilidad para un reembolso dependerá del trabajo ya completado y de la ley aplicable.</p>
+
+<h2>8. Precios y pago</h2>
+<p>Los precios son los que se muestran en el paquete correspondiente o en la cotización escrita al momento de confirmar el pedido.</p>
+<p>El pago vence antes de que comience la producción personalizada, a menos que VidaSong acuerde lo contrario por escrito.</p>
+<p>Los clientes son responsables de los impuestos aplicables, los problemas de procesamiento de pagos y los cargos resultantes de información de pago inexacta.</p>
+<p>VidaSong puede corregir un error evidente de precio o descripción antes de aceptar el pago.</p>
+
+<h2>9. Producción y entrega</h2>
+<p>Las fechas de entrega son estimaciones de buena fe, a menos que VidaSong garantice expresamente una fecha límite por escrito.</p>
+<p>La entrega puede verse afectada por:</p>
+<ul>
+<li>El tiempo de respuesta del cliente</li>
+<li>Solicitudes de revisión</li>
+<li>Interrupciones técnicas</li>
+<li>Limitaciones de las herramientas de producción</li>
+<li>Un volumen inusual de pedidos</li>
+<li>Eventos fuera del control razonable de VidaSong</li>
+</ul>
+<p>VidaSong puede entregar archivos por correo electrónico, enlace privado, carpeta en la nube u otro método digital razonable.</p>
+
+<h2>10. Revisiones, cancelaciones y reembolsos</h2>
+<p>Todas las revisiones, cancelaciones y reembolsos se rigen por la <a href="refund-policy.html?lang=es">Política de Revisiones y Reembolsos</a> de VidaSong, que se incorpora a estos Términos.</p>
+<p>El cliente acepta que el trabajo creativo personalizado puede volverse no reembolsable una vez que comienza la producción.</p>
+
+<h2>11. Derechos sobre los entregables completados</h2>
+<p>Después del pago completo, VidaSong otorga al cliente una licencia perpetua, mundial, libre de regalías y no exclusiva para usar los materiales finales entregados con fines personales y no comerciales.</p>
+<p>Los usos personales permitidos incluyen:</p>
+<ul>
+<li>Reproducir la canción en privado</li>
+<li>Compartirla con amigos y familiares</li>
+<li>Usarla en una celebración personal</li>
+<li>Publicarla en la cuenta personal de redes sociales del cliente</li>
+<li>Incluirla en un video familiar personal</li>
+<li>Imprimir los archivos de letra o arte entregados para exhibición personal</li>
+</ul>
+<p>A menos que VidaSong otorgue permiso comercial por escrito, el cliente no puede:</p>
+<ul>
+<li>Vender o sublicenciar la canción completada</li>
+<li>Licenciarla a otra empresa</li>
+<li>Usarla en publicidad pagada</li>
+<li>Monetizarla mediante distribución comercial</li>
+<li>Registrarla como propiedad intelectual de titularidad exclusiva</li>
+<li>Afirmar que la obra no contiene elementos generados por inteligencia artificial</li>
+<li>Eliminar los derechos de otra persona sobre los materiales que aportó</li>
+</ul>
+<p>Los usos comerciales pueden requerir un acuerdo escrito separado.</p>
+<p>VidaSong conserva sus derechos sobre:</p>
+<ul>
+<li>Su nombre, marcas, logotipos y sitio web</li>
+<li>Plantillas preexistentes</li>
+<li>Métodos y procesos de producción</li>
+<li>Sistemas generales de diseño</li>
+<li>Materiales no creados específicamente para el cliente</li>
+</ul>
+<p>Nada en estos Términos garantiza que cada elemento de un proyecto completado sea elegible para protección de derechos de autor.</p>
+
+<h2>12. Privacidad del cliente y uso en portafolio</h2>
+<p>VidaSong trata los proyectos de los clientes como privados por defecto.</p>
+<p>VidaSong no usará intencionalmente el nombre, la historia, las fotografías, la canción completada, la reacción, la reseña ni el testimonio de un cliente para publicidad sin permiso separado.</p>
+<p>Cualquier permiso promocional debe ser afirmativo y no se exige como condición para comprar el servicio estándar.</p>
+
+<h2>13. Reseñas y testimonios</h2>
+<p>Los clientes pueden dar reseñas honestas basadas en su experiencia real.</p>
+<p>VidaSong no exigirá a un cliente dar una reseña positiva como condición para recibir un descuento, reembolso, revisión u otro beneficio.</p>
+<p>Si VidaSong ofrece un incentivo por una reseña honesta, la existencia de ese incentivo debe divulgarse apropiadamente.</p>
+<p>VidaSong puede editar un testimonio por ortografía, extensión o formato solo cuando la edición no altere el significado del autor.</p>
+
+<h2>14. Servicios de terceros</h2>
+<p>VidaSong depende de servicios de terceros para alojamiento, formularios, correo electrónico, almacenamiento, producción asistida por inteligencia artificial, procesamiento de pagos, analítica y publicidad.</p>
+<p>VidaSong no es responsable de:</p>
+<ul>
+<li>La conducta independiente de un tercero</li>
+<li>La interrupción del servicio de un tercero</li>
+<li>Que una plataforma social elimine o restrinja el contenido del cliente</li>
+<li>Que una plataforma cambie sus reglas técnicas o de licencias</li>
+<li>La violación por parte del cliente de los términos de un tercero</li>
+</ul>
+<p>El uso de un proyecto completado en otra plataforma queda sujeto a las reglas de esa plataforma.</p>
+
+<h2>15. Naturaleza artística del servicio</h2>
+<p>Las canciones personalizadas son obras creativas subjetivas.</p>
+<p>VidaSong no garantiza:</p>
+<ul>
+<li>Una reacción emocional particular</li>
+<li>Que a cada destinatario le guste el género o estilo vocal final</li>
+<li>Éxito comercial</li>
+<li>Interacción en redes sociales</li>
+<li>Registro de derechos de autor</li>
+<li>Exclusividad completa</li>
+<li>Aceptación por parte de una plataforma de streaming, publicidad o distribución</li>
+</ul>
+<p>La obligación de VidaSong es hacer un esfuerzo de buena fe para entregar materiales que sigan sustancialmente el plan de canción aprobado y el paquete comprado.</p>
+
+<h2>16. Exención de garantías</h2>
+<p>En la máxima medida permitida por la ley, los servicios de VidaSong se proporcionan "tal cual" y "según disponibilidad", sujetos a los compromisos expresos contenidos en la confirmación del pedido y la Política de Revisiones y Reembolsos.</p>
+<p>VidaSong renuncia a las garantías implícitas en la medida en que dichas garantías puedan renunciarse legalmente.</p>
+<p>Nada en estos Términos limita los derechos del consumidor que no pueden renunciarse legalmente.</p>
+
+<h2>17. Limitación de responsabilidad</h2>
+<p>En la máxima medida permitida por la ley, VidaSong no será responsable de daños indirectos, incidentales, especiales, consecuentes, ejemplares o punitivos derivados del servicio.</p>
+<p>La responsabilidad total de VidaSong derivada de un pedido particular no excederá el monto que el cliente pagó por ese pedido.</p>
+<p>Estas limitaciones no se aplican donde la ley lo prohíba.</p>
+
+<h2>18. Responsabilidad por reclamaciones de terceros</h2>
+<p>El cliente es responsable de las reclamaciones que resulten de materiales que envió sin los derechos, permisos o autoridad apropiados.</p>
+<p>En la medida permitida por la ley, el cliente acepta reembolsar a VidaSong las pérdidas, gastos o reclamaciones razonables que surjan directamente de la violación por parte del cliente de la Sección 6 o la Sección 7.</p>
+
+<h2>19. Rechazo o terminación del servicio</h2>
+<p>VidaSong puede rechazar, suspender o terminar el servicio cuando:</p>
+<ul>
+<li>Un cliente viola estos Términos</li>
+<li>Un cliente incurre en abuso, amenazas, fraude o acoso</li>
+<li>Una solicitud es ilegal o está prohibida</li>
+<li>No se recibe el pago necesario</li>
+<li>VidaSong determina razonablemente que no puede completar la solicitud de forma segura o apropiada</li>
+</ul>
+<p>Cualquier reembolso se determinará conforme a la Política de Revisiones y Reembolsos y la ley aplicable.</p>
+
+<h2>20. Ley aplicable</h2>
+<p>Estos Términos se rigen por las leyes del Estado de Illinois, sin considerar los principios de conflicto de leyes.</p>
+<p>Antes de presentar una reclamación legal, el cliente y VidaSong acuerdan hacer un esfuerzo razonable por resolver la disputa mediante comunicación escrita directa.</p>
+<p>Sujeto a la ley de protección al consumidor aplicable, los procedimientos legales relacionados con estos Términos pueden presentarse ante un tribunal estatal o federal apropiado ubicado en Illinois.</p>
+
+<h2>21. Divisibilidad</h2>
+<p>Si alguna disposición de estos Términos se considera inaplicable, las disposiciones restantes permanecerán en vigor en la medida permitida por la ley.</p>
+
+<h2>22. No renuncia</h2>
+<p>Que VidaSong no haga cumplir una disposición en una ocasión no renuncia al derecho de hacerla cumplir más adelante.</p>
+
+<h2>23. Cambios a estos Términos</h2>
+<p>VidaSong puede actualizar estos Términos a medida que cambie el servicio.</p>
+<p>La versión vigente se publicará con una fecha de "Última actualización" revisada. Los cambios se aplicarán de forma prospectiva, a menos que la ley aplicable exija lo contrario.</p>
+
+<h2>24. Contacto</h2>
+<p>Las preguntas sobre estos Términos pueden enviarse a:</p>
+<p><strong>VidaSong</strong><br>Correo: <a href="mailto:orders@vidasong.com">orders@vidasong.com</a></p>
+</div>
 
 <footer>
-<a href="index.html">VidaSong</a> · <a href="privacy.html">Privacy Policy</a> · <a href="refund-policy.html">Revision &amp; Refund Policy</a> · <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>
+<a href="index.html" class="pol" data-base="index.html">VidaSong</a> · <a href="privacy.html" class="pol" data-base="privacy.html">Privacy Policy</a> · <a href="refund-policy.html" class="pol" data-base="refund-policy.html">Revision &amp; Refund Policy</a> · <a href="mailto:orders@vidasong.com">orders@vidasong.com</a>
 </footer>
 </div>
+<script>
+function setL(l){
+document.getElementById('lang-en').style.display=l==='en'?'':'none';
+document.getElementById('lang-es').style.display=l==='es'?'':'none';
+document.getElementById('btn-en').classList.toggle('active',l==='en');
+document.getElementById('btn-es').classList.toggle('active',l==='es');
+document.documentElement.lang=l;
+document.querySelectorAll('a.pol').forEach(a=>{const b=a.getAttribute('data-base');a.setAttribute('href',l==='es'?b+'?lang=es':b);});
+document.getElementById('backlink').setAttribute('href',l==='es'?'index.html?lang=es':'index.html');
+try{const u=new URL(location);if(l==='es'){u.searchParams.set('lang','es')}else{u.searchParams.delete('lang')}history.replaceState(null,'',u)}catch(e){}
+}
+try{if(new URLSearchParams(location.search).get('lang')==='es')setL('es');}catch(e){}
+</script>
 </body>
 </html>
