@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HeartVerse — Your story, made into music</title>
+<title>VidaSong — Your story, made into music</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -202,7 +202,7 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
 
 <nav>
   <div class="wrap nav-inner">
-    <div class="logo">Heart<span>Verse</span></div>
+    <div class="logo">Vida<span>Song</span></div>
     <div class="nav-links">
       <a href="#samples" class="hide-m" data-i18n="nav_samples">Samples</a>
       <a href="#how" class="hide-m" data-i18n="nav_how">How it works</a>
@@ -512,7 +512,7 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
 <footer>
   <div class="wrap foot-grid">
     <div>
-      <div class="logo" style="font-size:19px">Heart<span style="color:var(--gold)">Verse</span></div>
+      <div class="logo" style="font-size:19px">Vida<span style="color:var(--gold)">Song</span></div>
       <p class="disclosure" data-i18n="foot_disc">Our songs are created through human storytelling, hand-written lyrics, and AI-assisted music production. Every order is personally reviewed before delivery. Demonstration songs are labeled examples, not customer testimonials.</p>
     </div>
     <div>
@@ -531,7 +531,7 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
    Orders will arrive in your email + Formspree dashboard.
    Later this can point at your own Flask/n8n endpoint instead.
    ============================================================ */
-const FORM_ENDPOINT = "https://formspree.io/f/mjgnvqgn"; // HeartVerse Orders — Formspree
+const FORM_ENDPOINT = "https://formspree.io/f/mjgnvqgn"; // VidaSong Orders — Formspree
 const ORDER_EMAIL   = "heartverse.orders@gmail.com"; // fallback if endpoint is empty/fails
 
 /* ---------- Rotating record label ---------- */
@@ -805,7 +805,7 @@ function buildReview(){ renderReview(); goStep(5); }
 function orderPayload(){
   const p=priceInfo();
   return {
-    _subject:`HeartVerse request — ${gv('f_recipient')} (${rv('occ')})`,
+    _subject:`VidaSong request — ${gv('f_recipient')} (${rv('occ')})`,
     buyer:gv('f_buyer'), email:gv('f_email'),
     package:p.pkgName, total_on_approval:`$${p.total}`,
     needed_by:gv('f_date'), occasion:rv('occ'),

@@ -1,2 +1,2 @@
-# heartverse
-HeartVerse - personalized family tribute songs. Your story, made into music.
+# vidasong
+VidaSong - personalized family tribute songs. Your story, made into music.
