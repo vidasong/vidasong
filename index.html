@@ -723,6 +723,8 @@ function setLang(l){
   if(cur===5 && !document.getElementById('success-view').classList.contains('show')) renderReview();
 }
 applyPlaceholders('en');
+/* Deep-link: ?lang=es opens Spanish (for language-targeted ads) */
+try{if(new URLSearchParams(location.search).get('lang')==='es')setLang('es');}catch(e){}
 
 /* ---------- Form logic ---------- */
 let cur=1;
