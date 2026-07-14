@@ -1,2 +1,2 @@
 # heartverse
-HeartVerse - personalized family tribute songs. You story, made into music.
+HeartVerse - personalized family tribute songs. Your story, made into music.
