@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HeartVerse — Your story, made into music</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#3B1522;
+  --wine-deep:#2A0E18;
+  --gold:#D4A843;
+  --gold-soft:#E8C97A;
+  --paper:#F7F1E5;
+  --paper-dim:#EFE6D3;
+  --rose:#C97B8B;
+  --ink:#2E1A20;
+  --ink-soft:#6B4A55;
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Figtree',sans-serif;background:var(--wine);color:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.serif{font-family:'Fraunces',serif}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(42,14,24,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(212,168,67,.18)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Fraunces',serif;font-size:22px;font-weight:600;letter-spacing:.01em}
+.logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:14px;font-weight:500}
+.nav-links a{text-decoration:none;opacity:.85;transition:opacity .2s}
+.nav-links a:hover{opacity:1}
+.lang-toggle{display:flex;border:1px solid rgba(212,168,67,.4);border-radius:20px;overflow:hidden;font-size:12px;font-weight:600}
+.lang-toggle button{background:none;border:none;color:var(--paper);padding:5px 12px;cursor:pointer;letter-spacing:.05em}
+.lang-toggle button.active{background:var(--gold);color:var(--wine-deep)}
+.btn{display:inline-block;background:var(--gold);color:var(--wine-deep);font-weight:700;padding:13px 28px;border-radius:30px;text-decoration:none;border:none;font-size:15px;cursor:pointer;font-family:'Figtree',sans-serif;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,168,67,.35)}
+.btn.small{padding:9px 20px;font-size:13px}
+.btn.ghost{background:transparent;color:var(--gold);border:1.5px solid var(--gold)}
+.btn.wine{background:var(--wine);color:var(--gold-soft)}
+.btn:disabled{opacity:.55;cursor:default;transform:none;box-shadow:none}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px}
+
+/* HERO */
+.hero{padding:72px 0 88px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(38px,5.2vw,58px);font-weight:600;line-height:1.12;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--gold-soft)}
+.hero p.lede{margin:22px 0 32px;font-size:18px;color:rgba(247,241,229,.82);max-width:46ch}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.hero-note{margin-top:18px;font-size:13px;color:rgba(247,241,229,.55)}
+
+/* RECORD — signature element */
+.record-scene{display:flex;justify-content:center;align-items:center}
+.record{width:min(360px,80vw);aspect-ratio:1;border-radius:50%;position:relative;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.05) 0 1px, transparent 1px 6px),
+    radial-gradient(circle at 38% 32%, #241016 0 30%, #180a0f 70%);
+  box-shadow:0 24px 60px rgba(0,0,0,.5), inset 0 0 0 2px rgba(212,168,67,.15);
+  animation:spin 14s linear infinite}
+.record::after{content:'';position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(from 210deg, transparent 0 68%, rgba(255,255,255,.06) 74%, transparent 82%)}
+.record-label{position:absolute;inset:31%;border-radius:50%;background:var(--paper);color:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:14px;
+  box-shadow:inset 0 0 0 3px var(--gold), inset 0 0 0 5px var(--paper)}
+.record-label .to{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+.record-label .name{font-family:'Fraunces',serif;font-size:clamp(16px,2.4vw,21px);font-weight:600;margin:3px 0}
+.record-label .occ{font-size:10.5px;color:var(--ink-soft);font-style:italic;font-family:'Fraunces',serif}
+.record-hole{position:absolute;left:50%;top:50%;width:10px;height:10px;border-radius:50%;background:var(--wine-deep);transform:translate(-50%,-50%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.record{animation:none}html{scroll-behavior:auto}}
+
+/* SECTIONS */
+section{padding:80px 0}
+.section-head{max-width:620px;margin-bottom:44px}
+.section-head h2{font-size:clamp(28px,3.6vw,40px);font-weight:600;margin-top:10px;line-height:1.2}
+.section-head p{margin-top:14px;color:rgba(247,241,229,.75)}
+
+/* SAMPLES */
+.paper-band{background:var(--paper);color:var(--ink)}
+.paper-band .section-head p{color:var(--ink-soft)}
+.samples{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.sample{background:#fff;border:1px solid #E4D8C2;border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:12px;box-shadow:0 2px 10px rgba(46,26,32,.06)}
+.sample .tag{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:12px;background:var(--wine);color:var(--gold-soft)}
+.sample h3{font-size:20px;font-weight:600}
+.sample .style{font-size:13px;color:var(--ink-soft);font-style:italic}
+.sample p{font-size:14.5px;color:#4d3540}
+.sample .lyric{border-left:3px solid var(--gold);padding:8px 0 8px 14px;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--wine);background:var(--paper);border-radius:0 8px 8px 0}
+.sample .placeholder{margin-top:auto;font-size:12px;color:#a08a92;display:flex;align-items:center;gap:8px}
+.sample .placeholder::before{content:'▶';display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--wine);color:var(--gold);align-items:center;justify-content:center;font-size:10px}
+.demo-note{margin-top:18px;font-size:12.5px;color:var(--ink-soft)}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+.step{background:rgba(247,241,229,.05);border:1px solid rgba(212,168,67,.2);border-radius:var(--radius);padding:26px 22px}
+.step::before{counter-increment:step;content:counter(step);font-family:'Fraunces',serif;font-size:34px;color:var(--gold);font-weight:600;display:block;margin-bottom:10px}
+.step h3{font-size:17px;margin-bottom:8px}
+.step p{font-size:14px;color:rgba(247,241,229,.72)}
+
+/* PACKAGES */
+.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.pkg{background:#fff;border:1px solid #E4D8C2;border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;position:relative}
+.pkg.featured{border:2px solid var(--gold);box-shadow:0 12px 36px rgba(59,21,34,.16)}
+.pkg .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--wine-deep);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:14px;white-space:nowrap}
+.pkg h3{font-size:20px}
+.pkg .price{font-family:'Fraunces',serif;font-size:42px;font-weight:600;color:var(--wine);margin:8px 0 2px}
+.pkg .price .was{font-size:17px;color:#b09aa2;text-decoration:line-through;font-weight:400;margin-left:8px}
+.pkg .founding{font-size:12px;color:var(--rose);font-weight:600;margin-bottom:14px}
+.pkg ul{list-style:none;margin:14px 0 22px;flex:1}
+.pkg li{font-size:14px;color:#4d3540;padding:6px 0 6px 24px;position:relative}
+.pkg li::before{content:'✦';position:absolute;left:2px;color:var(--gold);font-size:12px}
+.addons{margin-top:36px;background:var(--paper-dim);border-radius:var(--radius);padding:22px 26px;font-size:14px;color:#4d3540}
+.addons strong{color:var(--wine)}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid rgba(212,168,67,.2)}
+.faq-item summary{cursor:pointer;padding:20px 0;font-weight:600;font-size:16.5px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq-item summary::after{content:'+';color:var(--gold);font-size:22px;font-family:'Fraunces',serif}
+.faq-item[open] summary::after{content:'–'}
+.faq-item p{padding:0 0 20px;color:rgba(247,241,229,.75);font-size:15px;max-width:70ch}
+
+/* ORDER FORM */
+#order{background:var(--paper);color:var(--ink)}
+.form-shell{background:#fff;border:1px solid #E4D8C2;border-radius:18px;max-width:760px;margin:0 auto;padding:38px;box-shadow:0 14px 44px rgba(46,26,32,.1)}
+.progress{display:flex;gap:8px;margin-bottom:30px}
+.progress .p{flex:1;height:5px;border-radius:3px;background:#EBDFC9;transition:background .3s}
+.progress .p.done{background:var(--gold)}
+.fstep{display:none}
+.fstep.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.fstep h3{font-size:22px;margin-bottom:4px}
+.fstep .sub{font-size:14px;color:var(--ink-soft);margin-bottom:24px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:13.5px;font-weight:600;margin-bottom:6px;color:var(--wine)}
+.field .hint{font-weight:400;color:var(--ink-soft);font-size:12px}
+.field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid #DCCFB6;border-radius:10px;font-family:'Figtree',sans-serif;font-size:15px;background:#FDFBF6;color:var(--ink)}
+.field textarea{min-height:88px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,168,67,.18)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{display:none}
+.chips label{display:inline-block;padding:8px 16px;border:1.5px solid #DCCFB6;border-radius:20px;font-size:13.5px;cursor:pointer;background:#FDFBF6;font-weight:500;color:var(--ink);transition:all .15s}
+.chips input:checked+label{background:var(--wine);color:var(--gold-soft);border-color:var(--wine)}
+.form-nav{display:flex;justify-content:space-between;margin-top:28px}
+.reveal{display:none;margin-top:16px;padding:18px;background:var(--paper);border:1px solid #E4D8C2;border-radius:12px}
+.reveal.open{display:block;animation:fade .25s ease}
+.field-note{font-size:12.5px;color:var(--ink-soft);margin-top:8px;line-height:1.5}
+
+/* REVIEW / CHECKOUT */
+.review-card{border:1px solid #E4D8C2;border-radius:14px;overflow:hidden}
+.review-sec{padding:20px 24px;border-bottom:1px solid #EFE6D3}
+.review-sec:last-child{border-bottom:none}
+.review-sec .rs-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.review-sec .rs-title{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--gold);font-family:'Figtree',sans-serif}
+.review-sec .rs-edit{font-size:12.5px;color:var(--ink-soft);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'Figtree',sans-serif}
+.review-sec .rs-edit:hover{color:var(--wine)}
+.rrow{display:flex;gap:14px;padding:4px 0;font-size:14.5px}
+.rrow .rk{flex:0 0 170px;color:var(--ink-soft)}
+.rrow .rv{flex:1;color:var(--ink);white-space:pre-wrap}
+.price-lines{background:var(--paper)}
+.pline{display:flex;justify-content:space-between;font-size:14.5px;padding:4px 0;color:var(--ink)}
+.pline.total{border-top:1.5px solid var(--gold);margin-top:10px;padding-top:12px;font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--wine)}
+.charge-note{margin-top:14px;font-size:13px;color:var(--ink-soft);display:flex;gap:8px;align-items:flex-start}
+.charge-note::before{content:'✦';color:var(--gold)}
+/* SUCCESS */
+.success{display:none;text-align:center;padding:16px 0}
+.success.show{display:block;animation:fade .35s ease}
+.success .mark{width:64px;height:64px;border-radius:50%;background:var(--wine);color:var(--gold);font-size:28px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Fraunces',serif}
+.success h3{font-size:26px;margin-bottom:8px}
+.success .sp{color:var(--ink-soft);font-size:15px;max-width:52ch;margin:0 auto 26px}
+.next-steps{text-align:left;max-width:480px;margin:0 auto;counter-reset:ns}
+.ns{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #EFE6D3;font-size:14.5px;color:var(--ink)}
+.ns:last-child{border-bottom:none}
+.ns::before{counter-increment:ns;content:counter(ns);flex:0 0 26px;height:26px;border-radius:50%;background:var(--gold);color:var(--wine-deep);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif}
+.err-note{display:none;margin-top:14px;font-size:13.5px;color:#8E2A2A;background:#FBEDEA;border:1px solid #E8C4BC;border-radius:10px;padding:12px 16px}
+
+/* FOOTER */
+footer{background:var(--wine-deep);padding:48px 0 36px;font-size:13.5px;color:rgba(247,241,229,.6)}
+.foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
+
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .record-scene{order:-1}
+  .samples,.packages,.steps{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .nav-links a.hide-m{display:none}
+  .field-row{grid-template-columns:1fr}
+  .form-shell{padding:26px 20px}
+  .rrow{flex-direction:column;gap:2px}
+  .rrow .rk{flex:none}
+}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">Heart<span>Verse</span></div>
+    <div class="nav-links">
+      <a href="#samples" class="hide-m" data-i18n="nav_samples">Samples</a>
+      <a href="#how" class="hide-m" data-i18n="nav_how">How it works</a>
+      <a href="#packages" class="hide-m" data-i18n="nav_pricing">Pricing</a>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+        <button id="btn-es" onclick="setLang('es')">ES</button>
+      </div>
+      <a class="btn small" href="#order" data-i18n="nav_cta">Start your song</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow" data-i18n="hero_eyebrow">Personalized tribute songs · English · Español · Bilingual</div>
+      <h1 data-i18n-html="hero_h1">Turn the stories that built your family into <em>their own song</em>.</h1>
+      <p class="lede" data-i18n="hero_lede">Tell us the memories that matter — their name, their journey, the Sunday dinners, the sacrifices. We craft them into a personalized song they'll keep forever. In English, Spanish, or both.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#order" data-i18n="hero_cta1">Create their song</a>
+        <a class="btn ghost" href="#samples" data-i18n="hero_cta2">Hear examples</a>
+      </div>
+      <p class="hero-note" data-i18n="hero_note">Delivered in 3 business days · Revisions included · Human-reviewed, every order</p>
+    </div>
+    <div class="record-scene" aria-hidden="true">
+      <div class="record">
+        <div class="record-label">
+          <div class="to" data-i18n="rec_to">A song for</div>
+          <div class="name" id="rec-name">Rosa</div>
+          <div class="occ" id="rec-occ">65 años de amor y sacrificio</div>
+        </div>
+        <div class="record-hole"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="samples" class="paper-band">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="s_eyebrow">Example songs</div>
+      <h2 data-i18n="s_h2">Every family has a story worth singing</h2>
+      <p data-i18n="s_p">These are demonstration songs created from realistic stories, so you can hear exactly what we make. Your song is written from scratch — your names, your places, your memories.</p>
+    </div>
+    <div class="samples">
+      <div class="sample">
+        <span class="tag">Español</span>
+        <h3 data-i18n="s1_h">Para Rosa — 65th Birthday</h3>
+        <div class="style" data-i18n="s1_style">Warm ranchera-inspired ballad · female vocal</div>
+        <p data-i18n="s1_p">From her childhood in Jalisco to the family she raised in Chicago — and the Sunday pozole that keeps everyone coming home.</p>
+        <div class="lyric">"De Jalisco trajiste el corazón, y en cada domingo nos lo das…"</div>
+        <div class="placeholder" data-i18n="s_listen">Sample — 90 seconds</div>
+      </div>
+      <div class="sample">
+        <span class="tag">English</span>
+        <h3 data-i18n="s2_h">Linda &amp; Robert — 40th Anniversary</h3>
+        <div class="style" data-i18n="s2_style">Acoustic country-pop ballad · duet feel</div>
+        <p data-i18n="s2_p">They met at a neighborhood dance in '86. Two kids, a thousand Wisconsin road trips, and a love that never needed to be loud.</p>
+        <div class="lyric">"Forty summers on the same old road, and I'd still choose the seat beside you…"</div>
+        <div class="placeholder" data-i18n="s_listen">Sample — 90 seconds</div>
+      </div>
+      <div class="sample">
+        <span class="tag">Bilingual</span>
+        <h3 data-i18n="s3_h">Don José — Retirement</h3>
+        <div class="style" data-i18n="s3_style">Latin acoustic · Spanish verses, English chorus</div>
+        <p data-i18n="s3_p">Thirty years under the hood with the radio on. A mechanic's hands, a father's example, and the doors he opened for his kids.</p>
+        <div class="lyric">"Con tus manos nos diste un futuro — every door you opened, we walked through…"</div>
+        <div class="placeholder" data-i18n="s_listen">Sample — 90 seconds</div>
+      </div>
+    </div>
+    <p class="demo-note" data-i18n="s_note">Rosa, Linda &amp; Robert, and Don José are fictional demonstration stories — shown so you can hear our craft before sharing your own family's story.</p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="h_eyebrow">How it works</div>
+      <h2 data-i18n="h_h2">From your memories to their song in three days</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3 data-i18n="h1_h">Share the story</h3><p data-i18n="h1_p">Answer our guided questionnaire — names, memories, occasions, the message you've never quite said out loud.</p></div>
+      <div class="step"><h3 data-i18n="h2_h">Approve the plan</h3><p data-i18n="h2_p">We reply within one business day with a written song plan. You approve it, request changes, or ask questions — nothing is produced or charged until you say go.</p></div>
+      <div class="step"><h3 data-i18n="h3_h">We craft the song</h3><p data-i18n="h3_p">We write and refine the lyrics by hand, produce the music, and review every line — pronunciation, culture, and all.</p></div>
+      <div class="step"><h3 data-i18n="h4_h">Deliver &amp; perfect</h3><p data-i18n="h4_p">You receive the song, lyrics, and artwork on a private page. Revisions are included until it feels right.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="packages" class="paper-band">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-i18n="p_eyebrow">Packages</div>
+      <h2 data-i18n="p_h2">Choose their keepsake</h2>
+      <p data-i18n="p_p">Founding-customer pricing for our first ten orders — in exchange for your honest feedback and a real review.</p>
+    </div>
+    <div class="packages">
+      <div class="pkg">
+        <h3 data-i18n="p1_h">Personal Song</h3>
+        <div class="price">$39 <span class="was">$59</span></div>
+        <div class="founding" data-i18n="founding">Founding price</div>
+        <ul>
+          <li data-i18n="p1_l1">~2 minute personalized song</li>
+          <li data-i18n="p1_l2">English or Spanish</li>
+          <li data-i18n="p1_l3">Any sound you can describe</li>
+          <li data-i18n="p1_l4">MP3 + digital cover art</li>
+          <li data-i18n="p1_l5">1 revision included</li>
+        </ul>
+        <button class="btn wine" onclick="pickPkg(0)" data-i18n="p_cta">Choose this</button>
+      </div>
+      <div class="pkg featured">
+        <div class="badge" data-i18n="p_pop">Most popular</div>
+        <h3 data-i18n="p2_h">Tribute Package</h3>
+        <div class="price">$59 <span class="was">$89</span></div>
+        <div class="founding" data-i18n="founding">Founding price</div>
+        <ul>
+          <li data-i18n="p2_l1">2–3 minute song, richer storytelling</li>
+          <li data-i18n="p2_l2">English or Spanish</li>
+          <li data-i18n="p2_l3">MP3 + cover art</li>
+          <li data-i18n="p2_l4">Printable lyric sheet</li>
+          <li data-i18n="p2_l5">2 revisions included</li>
+        </ul>
+        <button class="btn" onclick="pickPkg(1)" data-i18n="p_cta">Choose this</button>
+      </div>
+      <div class="pkg">
+        <h3 data-i18n="p3_h">Complete Keepsake</h3>
+        <div class="price">$89 <span class="was">$129</span></div>
+        <div class="founding" data-i18n="founding">Founding price</div>
+        <ul>
+          <li data-i18n="p3_l1">Full song + cover + lyric sheet</li>
+          <li data-i18n="p3_l2">Photo slideshow or lyric video</li>
+          <li data-i18n="p3_l3">Vertical version for sharing</li>
+          <li data-i18n="p3_l4">2 revisions included</li>
+        </ul>
+        <button class="btn wine" onclick="pickPkg(2)" data-i18n="p_cta">Choose this</button>
+      </div>
+    </div>
+    <div class="addons" data-i18n-html="addons"><strong>Add-ons:</strong> Bilingual English–Spanish version +$20 · Rush 24-hour delivery +$25 · Extra revision +$15 · Instrumental version +$10</div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:760px">
+    <div class="section-head">
+      <div class="eyebrow">FAQ</div>
+      <h2 data-i18n="f_h2">Questions families ask us</h2>
+    </div>
+    <details class="faq-item"><summary data-i18n="f1_q">Is this made with AI?</summary><p data-i18n="f1_a">Our songs are created through a combination of human storytelling, hand-written and edited lyrics, and AI-assisted music production. Every order is personally reviewed and refined by a real person before delivery — names, pronunciation, cultural details, everything.</p></details>
+    <details class="faq-item"><summary data-i18n="f2_q">Can the song be in Spanish, or both languages?</summary><p data-i18n="f2_a">Yes. We offer songs fully in English, fully in Spanish, or bilingual — for example, Spanish verses with an English chorus, perfect when generations in one family speak different languages. You describe the sound you want in your own words, and we match it.</p></details>
+    <details class="faq-item"><summary data-i18n="f3_q">How does payment work?</summary><p data-i18n="f3_a">You place your request first — no payment is taken on this site. Within one business day we send you a written song plan. Only when you approve the plan do we send a secure payment link, and production begins after payment. If we can't do your story justice, we'll tell you and nothing is owed.</p></details>
+    <details class="faq-item"><summary data-i18n="f4_q">What if I don't like the song?</summary><p data-i18n="f4_a">Every package includes revisions, and because you approve the song plan before production, surprises are rare. If a detail is wrong, we fix it.</p></details>
+    <details class="faq-item"><summary data-i18n="f5_q">Is my family's story kept private?</summary><p data-i18n="f5_a">Yes. Your stories, photos, and songs are private by default. We never use a customer's song or story in our marketing without separate written permission from you.</p></details>
+    <details class="faq-item"><summary data-i18n="f6_q">Can it sound like a specific famous artist?</summary><p data-i18n="f6_a">You can absolutely reference artists, eras, or songs to describe the sound you want — that's exactly what the request form is for. We create an original song inspired by that style, but we never imitate or clone a real artist's actual voice.</p></details>
+  </div>
+</section>
+
+<section id="order">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center;max-width:640px;margin:0 auto 40px">
+      <div class="eyebrow" data-i18n="o_eyebrow">Start your song</div>
+      <h2 data-i18n="o_h2">Tell us their story</h2>
+      <p data-i18n="o_p">About 5 minutes. The more real details you share, the more the song will sound like it could only be about them. No payment today — you approve the song plan first.</p>
+    </div>
+    <div class="form-shell">
+      <div class="progress" aria-hidden="true">
+        <div class="p done" id="p1"></div><div class="p" id="p2"></div><div class="p" id="p3"></div><div class="p" id="p4"></div><div class="p" id="p5"></div>
+      </div>
+
+      <!-- STEP 1: BASICS -->
+      <div class="fstep active" id="fs1">
+        <h3 data-i18n="fs1_h">The basics</h3>
+        <p class="sub" data-i18n="fs1_s">Who this song is for, and when you need it.</p>
+        <div class="field-row">
+          <div class="field"><label data-i18n="l_yname">Your name</label><input id="f_buyer" type="text" autocomplete="name"></div>
+          <div class="field"><label data-i18n="l_email">Your email</label><input id="f_email" type="email" autocomplete="email"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label data-i18n="l_rname">Who is the song for?</label><input id="f_recipient" type="text" data-ph="f_recipient"></div>
+          <div class="field"><label data-i18n="l_pron">How is their name pronounced? <span class="hint" data-i18n="l_pron_h">(so we get it exactly right)</span></label><input id="f_pron" type="text" data-ph="f_pron"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label data-i18n="l_rel">Your relationship to them</label><input id="f_rel" type="text" data-ph="f_rel"></div>
+          <div class="field"><label data-i18n="l_date">When do you need the song?</label><input id="f_date" type="date"></div>
+        </div>
+        <div class="field">
+          <label data-i18n="l_occ">What's the occasion?</label>
+          <div class="chips" id="occ-chips">
+            <input type="radio" name="occ" id="occ1" value="Birthday"><label for="occ1" data-i18n="c_bday">Birthday</label>
+            <input type="radio" name="occ" id="occ2" value="Anniversary"><label for="occ2" data-i18n="c_anniv">Anniversary</label>
+            <input type="radio" name="occ" id="occ3" value="Mother's/Father's Day"><label for="occ3" data-i18n="c_mfday">Mother's / Father's Day</label>
+            <input type="radio" name="occ" id="occ4" value="Retirement"><label for="occ4" data-i18n="c_retire">Retirement</label>
+            <input type="radio" name="occ" id="occ5" value="Just because"><label for="occ5" data-i18n="c_just">Just because</label>
+            <input type="radio" name="occ" id="occ6" value="Other"><label for="occ6" data-i18n="c_other">Other</label>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="l_pkg">Package</label>
+          <select id="f_pkg">
+            <option data-i18n="pkg_opt1">Personal Song — $39 founding</option>
+            <option selected data-i18n="pkg_opt2">Tribute Package — $59 founding</option>
+            <option data-i18n="pkg_opt3">Complete Keepsake — $89 founding</option>
+          </select>
+        </div>
+        <div class="form-nav"><span></span><button class="btn" onclick="goStep(2)" data-i18n="b_next">Next →</button></div>
+      </div>
+
+      <!-- STEP 2: LANGUAGE & CULTURE -->
+      <div class="fstep" id="fs2">
+        <h3 data-i18n="fs2_h">Language &amp; culture</h3>
+        <p class="sub" data-i18n="fs2_s">So the song sounds like it comes from your family, not from a template.</p>
+        <div class="field">
+          <label data-i18n="l_lang">Song language</label>
+          <div class="chips">
+            <input type="radio" name="lang" id="lg1" value="English" checked><label for="lg1">English</label>
+            <input type="radio" name="lang" id="lg2" value="Spanish"><label for="lg2">Español</label>
+            <input type="radio" name="lang" id="lg3" value="Bilingual (+$20)"><label for="lg3" data-i18n="c_biling">Bilingual (+$20)</label>
+          </div>
+        </div>
+        <div class="field"><label data-i18n="l_culture">Country, region, or cultural roots we should honor <span class="hint" data-i18n="l_opt">(optional)</span></label><input id="f_culture" type="text" data-ph="f_culture"></div>
+        <div class="field"><label data-i18n="l_terms">What do you call them? <span class="hint" data-i18n="l_terms_h">(nicknames and family terms to use in the song)</span></label><input id="f_terms" type="text" data-ph="f_terms"></div>
+        <div class="field">
+          <label data-i18n="l_relig">Should the song include their faith?</label>
+          <div class="chips">
+            <input type="radio" name="relig" id="rl1" value="Yes, include it" onchange="religToggle()"><label for="rl1" data-i18n="c_rel_yes">Yes, include it</label>
+            <input type="radio" name="relig" id="rl2" value="A light touch" onchange="religToggle()"><label for="rl2" data-i18n="c_rel_light">A light touch</label>
+            <input type="radio" name="relig" id="rl3" value="No religious references" checked onchange="religToggle()"><label for="rl3" data-i18n="c_rel_no">Please avoid</label>
+          </div>
+          <div class="reveal" id="relig-detail">
+            <div class="field"><label data-i18n="l_religion">Their religion or faith tradition</label><input id="f_religion" type="text" data-ph="f_religion"></div>
+            <div class="field" style="margin-bottom:0"><label data-i18n="l_relig_refs">Specific references to include <span class="hint" data-i18n="l_relig_refs_h">(a saint, a verse or psalm, a hymn, a blessing — whatever fits their faith)</span></label><input id="f_relig_refs" type="text" data-ph="f_relig_refs"></div>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn ghost" onclick="goStep(1)" data-i18n="b_back">← Back</button><button class="btn" onclick="goStep(3)" data-i18n="b_next">Next →</button></div>
+      </div>
+
+      <!-- STEP 3: STORY -->
+      <div class="fstep" id="fs3">
+        <h3 data-i18n="fs3_h">Their story</h3>
+        <p class="sub" data-i18n="fs3_s">This is the heart of the song. Real details make it unforgettable.</p>
+        <div class="field"><label data-i18n="l_mem">Three meaningful memories or moments from their life</label><textarea id="f_memories" data-ph="f_memories"></textarea></div>
+        <div class="field"><label data-i18n="l_sac">Sacrifices or accomplishments to honor</label><textarea id="f_sacrifice" data-ph="f_sacrifice"></textarea></div>
+        <div class="field"><label data-i18n="l_traits">Their personality, traditions, places, foods, sayings, inside jokes</label><textarea id="f_traits" data-ph="f_traits"></textarea></div>
+        <div class="field"><label data-i18n="l_msg">The message you most want them to hear</label><textarea id="f_message" data-ph="f_message"></textarea></div>
+        <div class="field"><label data-i18n="l_avoid">Anything the song must NOT mention</label><input id="f_avoid" type="text"></div>
+        <div class="form-nav"><button class="btn ghost" onclick="goStep(2)" data-i18n="b_back">← Back</button><button class="btn" onclick="goStep(4)" data-i18n="b_next">Next →</button></div>
+      </div>
+
+      <!-- STEP 4: SOUND -->
+      <div class="fstep" id="fs4">
+        <h3 data-i18n="fs4_h">The sound</h3>
+        <p class="sub" data-i18n="fs4_s">What should it feel like when they press play?</p>
+        <div class="field">
+          <label data-i18n="l_sound">Describe the sound you want — in your own words</label>
+          <textarea id="f_sound" style="min-height:110px" data-ph="f_sound"></textarea>
+          <p class="field-note" data-i18n="n_sound">Reference artists, specific songs, eras, instruments, or just describe the feeling. "Like early Vicente Fernández but gentler," "the sound of 90s slow jams," "acoustic like the songs Dad played in the garage" — anything that helps us hear what you hear. We create original music inspired by a style; we never imitate or clone a real artist's voice.</p>
+        </div>
+        <div class="field">
+          <label data-i18n="l_mood">Mood</label>
+          <div class="chips">
+            <input type="radio" name="mood" id="md1" value="Warm & grateful" checked><label for="md1" data-i18n="c_warm">Warm &amp; grateful</label>
+            <input type="radio" name="mood" id="md2" value="Joyful & celebratory"><label for="md2" data-i18n="c_joy">Joyful &amp; celebratory</label>
+            <input type="radio" name="mood" id="md3" value="Romantic"><label for="md3" data-i18n="c_rom">Romantic</label>
+            <input type="radio" name="mood" id="md4" value="Reflective & emotional"><label for="md4" data-i18n="c_refl">Reflective &amp; emotional</label>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="l_voice">Vocal</label>
+          <div class="chips">
+            <input type="radio" name="voice" id="vc1" value="Female" checked><label for="vc1" data-i18n="c_fem">Female</label>
+            <input type="radio" name="voice" id="vc2" value="Male"><label for="vc2" data-i18n="c_male">Male</label>
+            <input type="radio" name="voice" id="vc3" value="No preference"><label for="vc3" data-i18n="c_nopref">No preference</label>
+          </div>
+        </div>
+        <div class="form-nav"><button class="btn ghost" onclick="goStep(3)" data-i18n="b_back">← Back</button><button class="btn" onclick="buildReview()" data-i18n="b_review">Review my request →</button></div>
+      </div>
+
+      <!-- STEP 5: REVIEW & PLACE REQUEST -->
+      <div class="fstep" id="fs5">
+        <div id="review-view">
+          <h3 data-i18n="fs5_h">Review your request</h3>
+          <p class="sub" data-i18n="fs5_s">Check everything over — you can edit any section before sending it to us.</p>
+          <div class="review-card" id="review-card"></div>
+          <p class="charge-note" data-i18n="charge_note">Nothing is charged today. We'll send you a written song plan within one business day — payment happens only after you approve it.</p>
+          <div class="err-note" id="err-note" data-i18n="err_note">Something went wrong sending your request. Please try again — or email your request to hello@heartverse.example and we'll take it from there.</div>
+          <div class="form-nav">
+            <button class="btn ghost" onclick="goStep(4)" data-i18n="b_back">← Back</button>
+            <button class="btn" id="place-btn" onclick="placeOrder()" data-i18n="b_place">Place my request ✦</button>
+          </div>
+        </div>
+        <div class="success" id="success-view">
+          <div class="mark">✦</div>
+          <h3 data-i18n="ok_h">Request received</h3>
+          <p class="sp" data-i18n="ok_p">Thank you — your family's story is in good hands. A confirmation is on its way to your email. Here's what happens next:</p>
+          <div class="next-steps">
+            <div class="ns" data-i18n="ns1">We read your story carefully and reply within one business day.</div>
+            <div class="ns" data-i18n="ns2">You receive your song plan — the story, style, and language we'll craft. Approve it, request changes, or ask us anything by replying.</div>
+            <div class="ns" data-i18n="ns3">Once you approve, we send a secure payment link. Production begins after payment.</div>
+            <div class="ns" data-i18n="ns4">Your song, lyrics, and artwork arrive on a private page — with revisions included until it feels right.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <div class="logo" style="font-size:19px">Heart<span style="color:var(--gold)">Verse</span></div>
+      <p class="disclosure" data-i18n="foot_disc">Our songs are created through human storytelling, hand-written lyrics, and AI-assisted music production. Every order is personally reviewed before delivery. Demonstration songs are labeled examples, not customer testimonials.</p>
+    </div>
+    <div>
+      <p><strong style="color:var(--gold-soft)" data-i18n="foot_c">Contact</strong></p>
+      <p>hello@heartverse.example</p>
+      <p style="margin-top:14px" data-i18n="foot_pol">Privacy policy · Revision policy · Terms</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   CONFIG — paste your form endpoint here before going live.
+   Easiest: create a free form at formspree.io, copy the URL
+   (looks like https://formspree.io/f/abcdwxyz) and paste below.
+   Orders will arrive in your email + Formspree dashboard.
+   Later this can point at your own Flask/n8n endpoint instead.
+   ============================================================ */
+const FORM_ENDPOINT = "https://formspree.io/f/mjgnvqgn"; // HeartVerse Orders — Formspree
+const ORDER_EMAIL   = "hello@heartverse.example"; // fallback if endpoint is empty/fails
+
+/* ---------- Rotating record label ---------- */
+const dedications=[
+  {name:"Rosa",occ:"65 años de amor y sacrificio"},
+  {name:"Linda & Robert",occ:"Forty years, one song"},
+  {name:"Don José",occ:"A lifetime of hard work"},
+  {name:"Mamá",occ:"Todo lo que somos, empezó contigo"},
+  {name:"Grandpa Joe",occ:"The stories he told us"}
+];
+let di=0;
+setInterval(()=>{
+  di=(di+1)%dedications.length;
+  const n=document.getElementById('rec-name'),o=document.getElementById('rec-occ');
+  n.style.opacity=0;o.style.opacity=0;
+  setTimeout(()=>{n.textContent=dedications[di].name;o.textContent=dedications[di].occ;n.style.opacity=1;o.style.opacity=1;},350);
+},4200);
+document.getElementById('rec-name').style.transition='opacity .35s';
+document.getElementById('rec-occ').style.transition='opacity .35s';
+
+/* ---------- Per-language form placeholders ----------
+   These are EXAMPLES ONLY and deliberately do NOT reuse
+   demo personas (Rosa, Linda, Robert, José). */
+const PH={
+en:{
+  f_recipient:"Margaret",
+  f_pron:'e.g., "MAR-gret" — or "rhymes with…"',
+  f_rel:"She's my mother",
+  f_culture:"Small-town Wisconsin roots, Irish-American family, proud Texan…",
+  f_terms:"Mom, Nana, Pop-Pop, \"Big Mike\"…",
+  f_religion:"Baptist, Catholic, Jewish, Muslim, non-denominational…",
+  f_relig_refs:"A favorite psalm or hymn, a patron saint, gratitude to God…",
+  f_memories:"1. She worked double shifts for years so we never went without…\n2. …\n3. …",
+  f_sacrifice:"Put three kids through school on one income. Never once complained.",
+  f_traits:"Sunday pot roast. Always says \"family first.\" Never misses a grandkid's game.",
+  f_message:"That everything we have started with her.",
+  f_sound:"Like early Dolly Parton but softer… the feel of a 90s slow jam… acoustic like the songs Dad played in the garage…"
+},
+es:{
+  f_recipient:"Esperanza",
+  f_pron:'p. ej., "es-pe-RAHN-sah"',
+  f_rel:"Es mi madre",
+  f_culture:"Su familia es de Oaxaca, México… raíces puertorriqueñas… del campo colombiano…",
+  f_terms:"Mamá, abuelita, mijo, \"la Doña\"…",
+  f_religion:"Católica, cristiana evangélica, judía, musulmana…",
+  f_relig_refs:"La Virgen de Guadalupe, un salmo favorito, los himnos de su iglesia…",
+  f_memories:"1. Llegó a este país a los 22 con dos maletas y toda la fe…\n2. …\n3. …",
+  f_sacrifice:"Trabajó doble turno por años para que nunca nos faltara nada.",
+  f_traits:"El mole de los domingos. Siempre dice \"échale ganas.\" Nunca falta a una quinceañera.",
+  f_message:"Que todo lo que tenemos empezó con ella.",
+  f_sound:"Como los boleros que cantaba mi abuelo… estilo banda pero más suave… como Juan Gabriel en sus baladas…"
+}};
+function applyPlaceholders(l){
+  document.querySelectorAll('[data-ph]').forEach(el=>{
+    const k=el.dataset.ph;
+    if(PH[l]&&PH[l][k]!==undefined) el.placeholder=PH[l][k];
+  });
+}
+
+/* ---------- i18n ---------- */
+const T={
+en:{},
+es:{
+ nav_samples:"Ejemplos",nav_how:"Cómo funciona",nav_pricing:"Precios",nav_cta:"Crea su canción",
+ hero_eyebrow:"Canciones personalizadas · English · Español · Bilingüe",
+ hero_h1:"Convierte las historias de tu familia en <em>su propia canción</em>.",
+ hero_lede:"Cuéntanos los recuerdos que importan — su nombre, su camino, las comidas de domingo, los sacrificios. Los convertimos en una canción personalizada que guardarán para siempre. En español, inglés o ambos.",
+ hero_cta1:"Crea su canción",hero_cta2:"Escucha ejemplos",
+ hero_note:"Entrega en 3 días hábiles · Revisiones incluidas · Revisión humana en cada pedido",
+ rec_to:"Una canción para",
+ s_eyebrow:"Canciones de ejemplo",s_h2:"Cada familia tiene una historia que merece ser cantada",
+ s_p:"Estas son canciones de demostración creadas con historias realistas, para que escuches exactamente lo que hacemos. Tu canción se escribe desde cero — tus nombres, tus lugares, tus recuerdos.",
+ s1_h:"Para Rosa — Cumpleaños 65",s1_style:"Balada estilo ranchera · voz femenina",
+ s1_p:"De su infancia en Jalisco a la familia que crió en Chicago — y el pozole de los domingos que reúne a todos.",
+ s2_h:"Linda y Robert — Aniversario 40",s2_style:"Balada country-pop acústica",
+ s2_p:"Se conocieron en un baile del barrio en el 86. Dos hijos, mil viajes por Wisconsin, y un amor que nunca necesitó ser ruidoso.",
+ s3_h:"Don José — Jubilación",s3_style:"Acústico latino · versos en español, coro en inglés",
+ s3_p:"Treinta años bajo el capó con la radio puesta. Manos de mecánico, ejemplo de padre, y las puertas que abrió para sus hijos.",
+ s_listen:"Muestra — 90 segundos",
+ s_note:"Rosa, Linda y Robert, y Don José son historias ficticias de demostración — para que escuches nuestro trabajo antes de compartir la historia de tu familia.",
+ h_eyebrow:"Cómo funciona",h_h2:"De tus recuerdos a su canción en tres días",
+ h1_h:"Comparte la historia",h1_p:"Responde nuestro cuestionario guiado — nombres, recuerdos, ocasiones, el mensaje que nunca has dicho en voz alta.",
+ h2_h:"Aprueba el plan",h2_p:"Respondemos en un día hábil con un plan escrito de la canción. Lo apruebas, pides cambios o haces preguntas — no se produce ni se cobra nada hasta que digas que sí.",
+ h3_h:"Creamos la canción",h3_p:"Escribimos y pulimos la letra a mano, producimos la música y revisamos cada línea — pronunciación, cultura, todo.",
+ h4_h:"Entrega y ajustes",h4_p:"Recibes la canción, la letra y la portada en una página privada. Las revisiones están incluidas.",
+ p_eyebrow:"Paquetes",p_h2:"Elige su recuerdo",
+ p_p:"Precio de clientes fundadores para nuestros primeros diez pedidos — a cambio de tu opinión honesta y una reseña real.",
+ founding:"Precio fundador",p_pop:"Más popular",p_cta:"Elegir este",
+ p1_h:"Canción Personal",p1_l1:"Canción personalizada de ~2 minutos",p1_l2:"Inglés o español",p1_l3:"Cualquier estilo que puedas describir",p1_l4:"MP3 + portada digital",p1_l5:"1 revisión incluida",
+ p2_h:"Paquete Tributo",p2_l1:"Canción de 2–3 min, historia más rica",p2_l2:"Inglés o español",p2_l3:"MP3 + portada",p2_l4:"Letra imprimible",p2_l5:"2 revisiones incluidas",
+ p3_h:"Recuerdo Completo",p3_l1:"Canción + portada + letra",p3_l2:"Video con fotos o letra",p3_l3:"Versión vertical para compartir",p3_l4:"2 revisiones incluidas",
+ addons:"<strong>Extras:</strong> Versión bilingüe inglés–español +$20 · Entrega urgente en 24 h +$25 · Revisión extra +$15 · Versión instrumental +$10",
+ f_h2:"Preguntas que nos hacen las familias",
+ f1_q:"¿Está hecho con inteligencia artificial?",
+ f1_a:"Nuestras canciones se crean combinando narrativa humana, letras escritas y editadas a mano, y producción musical asistida por IA. Cada pedido es revisado personalmente antes de la entrega — nombres, pronunciación, detalles culturales, todo.",
+ f2_q:"¿La canción puede ser en español, o en ambos idiomas?",
+ f2_a:"Sí. Ofrecemos canciones completamente en inglés, completamente en español, o bilingües — por ejemplo, versos en español con coro en inglés, perfecto cuando las generaciones de una familia hablan idiomas distintos. Tú describes el sonido que quieres con tus propias palabras, y nosotros lo logramos.",
+ f3_q:"¿Cómo funciona el pago?",
+ f3_a:"Primero envías tu solicitud — no se cobra nada en este sitio. En un día hábil te enviamos un plan escrito de la canción. Solo cuando apruebas el plan te enviamos un enlace de pago seguro, y la producción comienza después del pago. Si no podemos hacerle justicia a tu historia, te lo diremos y no debes nada.",
+ f4_q:"¿Y si no me gusta la canción?",
+ f4_a:"Cada paquete incluye revisiones, y como apruebas el plan de la canción antes de la producción, las sorpresas son raras. Si un detalle está mal, lo corregimos.",
+ f5_q:"¿La historia de mi familia es privada?",
+ f5_a:"Sí. Tus historias, fotos y canciones son privadas por defecto. Nunca usamos la canción o la historia de un cliente en nuestra publicidad sin tu permiso escrito por separado.",
+ f6_q:"¿Puede sonar como un artista famoso?",
+ f6_a:"Puedes mencionar artistas, épocas o canciones para describir el sonido que quieres — para eso es el formulario. Creamos una canción original inspirada en ese estilo, pero nunca imitamos ni clonamos la voz real de un artista.",
+ o_eyebrow:"Empieza su canción",o_h2:"Cuéntanos su historia",
+ o_p:"Unos 5 minutos. Cuantos más detalles reales compartas, más sonará la canción como si solo pudiera ser sobre esa persona. No se cobra nada hoy — primero apruebas el plan de la canción.",
+ fs1_h:"Lo básico",fs1_s:"Para quién es la canción y cuándo la necesitas.",
+ l_yname:"Tu nombre",l_email:"Tu correo",l_rname:"¿Para quién es la canción?",
+ l_pron:"¿Cómo se pronuncia su nombre?",l_pron_h:"(para decirlo exactamente bien)",
+ l_rel:"Tu relación con esa persona",l_date:"¿Para cuándo la necesitas?",l_occ:"¿Cuál es la ocasión?",
+ c_bday:"Cumpleaños",c_anniv:"Aniversario",c_mfday:"Día de la Madre / del Padre",c_retire:"Jubilación",c_just:"Sin motivo especial",c_other:"Otra",
+ l_pkg:"Paquete",
+ pkg_opt1:"Canción Personal — $39 fundador",pkg_opt2:"Paquete Tributo — $59 fundador",pkg_opt3:"Recuerdo Completo — $89 fundador",
+ b_next:"Siguiente →",b_back:"← Atrás",
+ fs2_h:"Idioma y cultura",fs2_s:"Para que la canción suene a tu familia, no a una plantilla.",
+ l_lang:"Idioma de la canción",c_biling:"Bilingüe (+$20)",
+ l_culture:"País, región o raíces culturales que debemos honrar",l_opt:"(opcional)",
+ l_terms:"¿Cómo le dicen?",l_terms_h:"(apodos y términos familiares para usar en la canción)",
+ l_relig:"¿La canción debe incluir su fe?",
+ c_rel_yes:"Sí, inclúyanla",c_rel_light:"Un toque ligero",c_rel_no:"Por favor evítenla",
+ l_religion:"Su religión o tradición de fe",
+ l_relig_refs:"Referencias específicas a incluir",
+ l_relig_refs_h:"(un santo, un versículo o salmo, un himno, una bendición — lo que corresponda a su fe)",
+ fs3_h:"Su historia",fs3_s:"Este es el corazón de la canción. Los detalles reales la hacen inolvidable.",
+ l_mem:"Tres recuerdos o momentos importantes de su vida",
+ l_sac:"Sacrificios o logros que honrar",
+ l_traits:"Su personalidad, tradiciones, lugares, comidas, dichos",
+ l_msg:"El mensaje que más quieres que escuche",
+ l_avoid:"Algo que la canción NO debe mencionar",
+ fs4_h:"El sonido",fs4_s:"¿Qué debe sentirse al presionar play?",
+ l_sound:"Describe el sonido que quieres — con tus propias palabras",
+ n_sound:"Menciona artistas, canciones específicas, épocas, instrumentos, o simplemente describe la sensación. \"Como Vicente Fernández en sus primeros años pero más suave,\" \"el sonido de las baladas de los 90,\" \"acústico como las canciones que papá ponía en el taller\" — lo que nos ayude a escuchar lo que tú escuchas. Creamos música original inspirada en un estilo; nunca imitamos ni clonamos la voz real de un artista.",
+ l_mood:"Estado de ánimo",
+ c_warm:"Cálido y agradecido",c_joy:"Alegre y festivo",c_rom:"Romántico",c_refl:"Reflexivo y emotivo",
+ l_voice:"Voz",c_fem:"Femenina",c_male:"Masculina",c_nopref:"Sin preferencia",
+ b_review:"Revisar mi solicitud →",
+ fs5_h:"Revisa tu solicitud",fs5_s:"Verifica todo — puedes editar cualquier sección antes de enviárnosla.",
+ charge_note:"No se cobra nada hoy. Te enviaremos un plan escrito de la canción en un día hábil — el pago ocurre solo después de que lo apruebes.",
+ err_note:"Algo salió mal al enviar tu solicitud. Inténtalo de nuevo — o envía tu solicitud por correo a hello@heartverse.example y nosotros nos encargamos.",
+ b_place:"Enviar mi solicitud ✦",
+ ok_h:"Solicitud recibida",
+ ok_p:"Gracias — la historia de tu familia está en buenas manos. Una confirmación va en camino a tu correo. Esto es lo que sigue:",
+ ns1:"Leemos tu historia con cuidado y respondemos en un día hábil.",
+ ns2:"Recibes el plan de tu canción — la historia, el estilo y el idioma. Apruébalo, pide cambios o pregúntanos lo que quieras respondiendo al correo.",
+ ns3:"Cuando lo apruebas, te enviamos un enlace de pago seguro. La producción comienza después del pago.",
+ ns4:"Tu canción, letra y portada llegan a una página privada — con revisiones incluidas hasta que quede perfecta.",
+ foot_disc:"Nuestras canciones se crean con narrativa humana, letras escritas a mano y producción musical asistida por IA. Cada pedido se revisa personalmente antes de la entrega. Las canciones de demostración están marcadas como ejemplos, no testimonios de clientes.",
+ foot_c:"Contacto",foot_pol:"Política de privacidad · Política de revisiones · Términos",
+ /* review card labels */
+ r_order:"Tu pedido",r_recipient:"Para quién es",r_langcult:"Idioma y cultura",r_story:"Su historia",r_sound:"El sonido",r_edit:"Editar",
+ rk_pkg:"Paquete",rk_need:"Fecha necesaria",rk_occ:"Ocasión",rk_buyer:"Tu nombre",rk_email:"Correo",
+ rk_name:"Nombre",rk_pron:"Pronunciación",rk_rel:"Relación",
+ rk_lang:"Idioma",rk_culture:"Raíces culturales",rk_terms:"Términos familiares",rk_faith:"Fe",rk_faithdet:"Tradición y referencias",
+ rk_mem:"Recuerdos",rk_sac:"Sacrificios y logros",rk_traits:"Personalidad y tradiciones",rk_msg:"Mensaje principal",rk_avoid:"No mencionar",
+ rk_sound:"Descripción del sonido",rk_mood:"Ánimo",rk_voice:"Voz",
+ pl_biling:"Versión bilingüe",pl_total:"Total al aprobar",r_none:"—"
+}};
+const enCache={};
+document.querySelectorAll('[data-i18n]').forEach(el=>{enCache[el.dataset.i18n]=el.innerHTML});
+document.querySelectorAll('[data-i18n-html]').forEach(el=>{enCache[el.dataset.i18nHtml]=el.innerHTML});
+/* English strings that only exist in JS (review card labels) */
+const EN_JS={
+ r_order:"Your order",r_recipient:"Who it's for",r_langcult:"Language & culture",r_story:"Their story",r_sound:"The sound",r_edit:"Edit",
+ rk_pkg:"Package",rk_need:"Needed by",rk_occ:"Occasion",rk_buyer:"Your name",rk_email:"Email",
+ rk_name:"Name",rk_pron:"Pronunciation",rk_rel:"Relationship",
+ rk_lang:"Language",rk_culture:"Cultural roots",rk_terms:"Family terms",rk_faith:"Faith",rk_faithdet:"Tradition & references",
+ rk_mem:"Memories",rk_sac:"Sacrifices & accomplishments",rk_traits:"Personality & traditions",rk_msg:"Core message",rk_avoid:"Do not mention",
+ rk_sound:"Sound description",rk_mood:"Mood",rk_voice:"Vocal",
+ pl_biling:"Bilingual version",pl_total:"Total due on approval",r_none:"—"
+};
+let LANG='en';
+function tr(k){ if(LANG==='es'&&T.es[k])return T.es[k]; if(EN_JS[k])return EN_JS[k]; return enCache[k]||k; }
+function setLang(l){
+  LANG=l;
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-es').classList.toggle('active',l==='es');
+  document.documentElement.lang=l;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.dataset.i18n;
+    el.innerHTML=(l==='es'&&T.es[k])?T.es[k]:enCache[k];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const k=el.dataset.i18nHtml;
+    el.innerHTML=(l==='es'&&T.es[k])?T.es[k]:enCache[k];
+  });
+  applyPlaceholders(l);
+  /* if user is on the review step, rebuild it in the new language */
+  if(cur===5 && !document.getElementById('success-view').classList.contains('show')) renderReview();
+}
+applyPlaceholders('en');
+
+/* ---------- Form logic ---------- */
+let cur=1;
+function goStep(n){
+  if(n>cur && !validateStep(cur)) return;
+  document.getElementById('fs'+cur).classList.remove('active');
+  document.getElementById('fs'+n).classList.add('active');
+  cur=n;
+  for(let i=1;i<=5;i++) document.getElementById('p'+i).classList.toggle('done',i<=n);
+  document.querySelector('.form-shell').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function validateStep(n){
+  if(n===1){
+    const need=['f_buyer','f_email','f_recipient'];
+    for(const id of need){const el=document.getElementById(id);
+      if(!el.value.trim()){el.focus();el.style.borderColor='#C0392B';setTimeout(()=>el.style.borderColor='',1600);return false}}
+  }
+  return true;
+}
+function pickPkg(idx){
+  document.getElementById('f_pkg').selectedIndex=idx;
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
+function religToggle(){
+  const v=document.querySelector('input[name="relig"]:checked').value;
+  document.getElementById('relig-detail').classList.toggle('open', v!=="No religious references");
+}
+function rv(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:'—'}
+function gv(id){return document.getElementById(id).value.trim()}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+/* ---------- Pricing ---------- */
+const PKG_PRICES=[39,59,89];
+function priceInfo(){
+  const idx=document.getElementById('f_pkg').selectedIndex;
+  const pkgName=document.getElementById('f_pkg').options[idx].text;
+  const base=PKG_PRICES[idx];
+  const biling=rv('lang').startsWith('Bilingual');
+  return {pkgName, base, biling, total: base + (biling?20:0)};
+}
+
+/* ---------- Review card ---------- */
+function row(k,v){ return `<div class="rrow"><div class="rk">${tr(k)}</div><div class="rv">${v?esc(v):tr('r_none')}</div></div>`; }
+function sec(titleKey, step, rows){
+  return `<div class="review-sec">
+    <div class="rs-head"><span class="rs-title">${tr(titleKey)}</span>
+    <button class="rs-edit" onclick="goStep(${step})">${tr('r_edit')}</button></div>${rows}</div>`;
+}
+function renderReview(){
+  const p=priceInfo();
+  const faithChoice=rv('relig');
+  const faithRows = faithChoice==="No religious references"
+    ? row('rk_faith', faithChoice)
+    : row('rk_faith', faithChoice) + row('rk_faithdet', [gv('f_religion'),gv('f_relig_refs')].filter(Boolean).join(' · '));
+  let html='';
+  html+=sec('r_order',1,
+    row('rk_buyer',gv('f_buyer'))+row('rk_email',gv('f_email'))+
+    row('rk_pkg',p.pkgName)+row('rk_occ',rv('occ'))+row('rk_need',gv('f_date')));
+  html+=sec('r_recipient',1,
+    row('rk_name',gv('f_recipient'))+row('rk_pron',gv('f_pron'))+row('rk_rel',gv('f_rel')));
+  html+=sec('r_langcult',2,
+    row('rk_lang',rv('lang'))+row('rk_culture',gv('f_culture'))+row('rk_terms',gv('f_terms'))+faithRows);
+  html+=sec('r_story',3,
+    row('rk_mem',gv('f_memories'))+row('rk_sac',gv('f_sacrifice'))+row('rk_traits',gv('f_traits'))+
+    row('rk_msg',gv('f_message'))+row('rk_avoid',gv('f_avoid')));
+  html+=sec('r_sound',4,
+    row('rk_sound',gv('f_sound'))+row('rk_mood',rv('mood'))+row('rk_voice',rv('voice')));
+  /* price lines */
+  let plines=`<div class="pline"><span>${esc(p.pkgName)}</span><span>$${p.base}</span></div>`;
+  if(p.biling) plines+=`<div class="pline"><span>${tr('pl_biling')}</span><span>+$20</span></div>`;
+  plines+=`<div class="pline total"><span>${tr('pl_total')}</span><span>$${p.total}</span></div>`;
+  html+=`<div class="review-sec price-lines">${plines}</div>`;
+  document.getElementById('review-card').innerHTML=html;
+}
+function buildReview(){ renderReview(); goStep(5); }
+
+/* ---------- Place order ---------- */
+function orderPayload(){
+  const p=priceInfo();
+  return {
+    _subject:`HeartVerse request — ${gv('f_recipient')} (${rv('occ')})`,
+    buyer:gv('f_buyer'), email:gv('f_email'),
+    package:p.pkgName, total_on_approval:`$${p.total}`,
+    needed_by:gv('f_date'), occasion:rv('occ'),
+    recipient:gv('f_recipient'), pronunciation:gv('f_pron'), relationship:gv('f_rel'),
+    language:rv('lang'), cultural_roots:gv('f_culture'), family_terms:gv('f_terms'),
+    faith:rv('relig'), faith_tradition:gv('f_religion'), faith_references:gv('f_relig_refs'),
+    memories:gv('f_memories'), sacrifices:gv('f_sacrifice'), personality:gv('f_traits'),
+    core_message:gv('f_message'), do_not_mention:gv('f_avoid'),
+    sound_description:gv('f_sound'), mood:rv('mood'), vocal:rv('voice'),
+    site_language:LANG, submitted:new Date().toISOString()
+  };
+}
+async function placeOrder(){
+  const btn=document.getElementById('place-btn');
+  const err=document.getElementById('err-note');
+  err.style.display='none';
+  btn.disabled=true;
+  const payload=orderPayload();
+  let ok=false;
+  if(FORM_ENDPOINT){
+    try{
+      const res=await fetch(FORM_ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      ok=res.ok;
+    }catch(e){ ok=false; }
+  }
+  if(!ok){
+    /* fallback: open the user's email client with the request pre-filled */
+    const body=Object.entries(payload).filter(([k])=>k!=='_subject')
+      .map(([k,v])=>`${k.replace(/_/g,' ')}: ${v}`).join('\n');
+    window.location.href=`mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(payload._subject)}&body=${encodeURIComponent(body)}`;
+    if(!FORM_ENDPOINT){ ok=true; } /* treat mailto as success when no endpoint configured */
+  }
+  if(ok){
+    document.getElementById('review-view').style.display='none';
+    document.getElementById('success-view').classList.add('show');
+    document.querySelector('.form-shell').scrollIntoView({behavior:'smooth',block:'start'});
+  }else{
+    err.style.display='block';
+    btn.disabled=false;
+  }
+}
+</script>
+</body>
+</html>
