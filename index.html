@@ -487,7 +487,7 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
           <p class="sub" data-i18n="fs5_s">Check everything over — you can edit any section before sending it to us.</p>
           <div class="review-card" id="review-card"></div>
           <p class="charge-note" data-i18n="charge_note">Nothing is charged today. We'll send you a written song plan within one business day — payment happens only after you approve it.</p>
-          <div class="err-note" id="err-note" data-i18n="err_note">Something went wrong sending your request. Please try again — or email your request to heartverse.orders@gmail.com and we'll take it from there.</div>
+          <div class="err-note" id="err-note" data-i18n="err_note">Something went wrong sending your request. Please try again — or email your request to orders@vidasong.com and we'll take it from there.</div>
           <div class="form-nav">
             <button class="btn ghost" onclick="goStep(4)" data-i18n="b_back">← Back</button>
             <button class="btn" id="place-btn" onclick="placeOrder()" data-i18n="b_place">Place my request ✦</button>
@@ -517,7 +517,7 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
     </div>
     <div>
       <p><strong style="color:var(--gold-soft)" data-i18n="foot_c">Contact</strong></p>
-      <p>heartverse.orders@gmail.com</p>
+      <p>orders@vidasong.com</p>
       <p style="margin-top:14px" data-i18n="foot_pol">Privacy policy · Revision policy · Terms</p>
     </div>
   </div>
@@ -532,7 +532,7 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
    Later this can point at your own Flask/n8n endpoint instead.
    ============================================================ */
 const FORM_ENDPOINT = "https://formspree.io/f/mjgnvqgn"; // VidaSong Orders — Formspree
-const ORDER_EMAIL   = "heartverse.orders@gmail.com"; // fallback if endpoint is empty/fails
+const ORDER_EMAIL   = "orders@vidasong.com"; // fallback if endpoint is empty/fails
 
 /* ---------- Rotating record label ---------- */
 const dedications=[
@@ -671,7 +671,7 @@ es:{
  b_review:"Revisar mi solicitud →",
  fs5_h:"Revisa tu solicitud",fs5_s:"Verifica todo — puedes editar cualquier sección antes de enviárnosla.",
  charge_note:"No se cobra nada hoy. Te enviaremos un plan escrito de la canción en un día hábil — el pago ocurre solo después de que lo apruebes.",
- err_note:"Algo salió mal al enviar tu solicitud. Inténtalo de nuevo — o envía tu solicitud por correo a heartverse.orders@gmail.com y nosotros nos encargamos.",
+ err_note:"Algo salió mal al enviar tu solicitud. Inténtalo de nuevo — o envía tu solicitud por correo a orders@vidasong.com y nosotros nos encargamos.",
  b_place:"Enviar mi solicitud ✦",
  ok_h:"Solicitud recibida",
  ok_p:"Gracias — la historia de tu familia está en buenas manos. Una confirmación va en camino a tu correo. Esto es lo que sigue:",
