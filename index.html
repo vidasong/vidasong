@@ -196,6 +196,8 @@ footer .disclosure{max-width:52ch;margin-top:10px;line-height:1.55}
   .rrow .rk{flex:none}
 }
 @media(max-width:520px){.steps{grid-template-columns:1fr}}
+.req-msg{color:#e2957f;font-size:12.5px;margin-top:5px;display:none}
+input.miss,textarea.miss{border-color:#C0392B!important}
 </style>
 </head>
 <body>
@@ -675,6 +677,11 @@ es:{
  err_note:"Algo salió mal al enviar tu solicitud. Inténtalo de nuevo — o envía tu solicitud por correo a orders@vidasong.com y nosotros nos encargamos.",
  b_place:"Enviar mi solicitud ✦",
  consent:"Acepto los <a href='terms.html?lang=es' style='color:inherit' target='_blank'>Términos de servicio</a>, la <a href='privacy.html?lang=es' style='color:inherit' target='_blank'>Política de privacidad</a> y la <a href='refund-policy.html?lang=es' style='color:inherit' target='_blank'>Política de revisiones y reembolsos</a>.",
+ req_name:"Escribe tu nombre — necesitamos saber a quién responder.",
+ req_email:"Necesitamos tu correo para enviarte el plan de tu canción — es la única forma de contactarte. No lo usamos para nada más.",
+ req_email_fmt:"Ese correo no parece completo — revísalo (ej.: nombre@ejemplo.com).",
+ req_recipient:"Cuéntanos para quién es la canción — es el corazón de todo.",
+ req_memories:"Esto es lo que hace la canción verdaderamente suya — con uno o dos recuerdos ya tenemos mucho para trabajar.",
  consent_alert:"Marca la casilla para aceptar los Términos de servicio, la Política de privacidad y la Política de revisiones y reembolsos.",
  ok_h:"Solicitud recibida",
  ok_p:"Gracias — la historia de tu familia está en buenas manos. Te responderemos desde orders@vidasong.com en un día hábil con el plan de tu canción (revisa spam la primera vez). Esto es lo que sigue:",
@@ -698,6 +705,11 @@ document.querySelectorAll('[data-i18n]').forEach(el=>{enCache[el.dataset.i18n]=e
 document.querySelectorAll('[data-i18n-html]').forEach(el=>{enCache[el.dataset.i18nHtml]=el.innerHTML});
 /* English strings that only exist in JS (review card labels) */
 const EN_JS={
+ req_name:"Please add your name — we need to know who to write back to.",
+ req_email:"We need your email to send your song plan — it’s the only way we can reach you. Nothing else is sent to it.",
+ req_email_fmt:"That email doesn’t look complete — please double-check it (e.g., name@example.com).",
+ req_recipient:"Tell us who the song is for — it’s the heart of the whole song.",
+ req_memories:"This is what makes the song truly theirs — even one or two memories give us plenty to work with.",
  consent_alert:"Please check the box to agree to the Terms of Service, Privacy Policy, and Revision & Refund Policy before placing your request.",
  r_order:"Your order",r_recipient:"Who it's for",r_langcult:"Language & culture",r_story:"Their story",r_sound:"The sound",r_edit:"Edit",
  rk_pkg:"Package",rk_need:"Needed by",rk_occ:"Occasion",rk_buyer:"Your name",rk_email:"Email",
@@ -723,6 +735,7 @@ function setLang(l){
     el.innerHTML=(l==='es'&&T.es[k])?T.es[k]:enCache[k];
   });
   applyPlaceholders(l);
+  markReq();
   /* if user is on the review step, rebuild it in the new language */
   if(cur===5 && !document.getElementById('success-view').classList.contains('show')) renderReview();
 }
@@ -741,14 +754,33 @@ function goStep(n){
   for(let i=1;i<=5;i++) document.getElementById('p'+i).classList.toggle('done',i<=n);
   document.querySelector('.form-shell').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function validateStep(n){
-  if(n===1){
-    const need=['f_buyer','f_email','f_recipient'];
-    for(const id of need){const el=document.getElementById(id);
-      if(!el.value.trim()){el.focus();el.style.borderColor='#C0392B';setTimeout(()=>el.style.borderColor='',1600);return false}}
-  }
-  return true;
+function fieldMsg(el,msgKey){
+  let m=el.parentElement.querySelector('.req-msg');
+  if(!m){m=document.createElement('div');m.className='req-msg';el.parentElement.appendChild(m);}
+  m.textContent=tr(msgKey);m.style.display='block';el.classList.add('miss');
+  el.addEventListener('input',function h(){m.style.display='none';el.classList.remove('miss');el.removeEventListener('input',h)});
 }
+function validateStep(n){
+  let ok=true,first=null;
+  const check=(id,key)=>{const el=document.getElementById(id);if(!el.value.trim()){fieldMsg(el,key);ok=false;if(!first)first=el;}};
+  if(n===1){
+    check('f_buyer','req_name');
+    const em=document.getElementById('f_email');const ev=em.value.trim();
+    if(!ev){fieldMsg(em,'req_email');ok=false;if(!first)first=em;}
+    else if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ev)){fieldMsg(em,'req_email_fmt');ok=false;if(!first)first=em;}
+    check('f_recipient','req_recipient');
+  }
+  if(n===3){check('f_memories','req_memories');}
+  if(!ok&&first){first.focus();first.scrollIntoView({behavior:'smooth',block:'center'});}
+  return ok;
+}
+function markReq(){
+  ['f_buyer','f_email','f_recipient','f_memories'].forEach(id=>{
+    const el=document.getElementById(id);const lab=el&&el.parentElement.querySelector('label');
+    if(lab&&!lab.querySelector('.req-star'))lab.insertAdjacentHTML('beforeend',' <span class="req-star" style="color:var(--gold)">*</span>');
+  });
+}
+markReq();
 function pickPkg(idx){
   document.getElementById('f_pkg').selectedIndex=idx;
   document.getElementById('order').scrollIntoView({behavior:'smooth'});
@@ -804,7 +836,11 @@ function renderReview(){
   html+=`<div class="review-sec price-lines">${plines}</div>`;
   document.getElementById('review-card').innerHTML=html;
 }
-function buildReview(){ renderReview(); goStep(5); }
+function buildReview(){
+  if(!validateStep(1)){goStep(1);setTimeout(()=>validateStep(1),60);return}
+  if(!validateStep(3)){goStep(3);setTimeout(()=>validateStep(3),60);return}
+  renderReview(); goStep(5);
+}
 
 /* ---------- Place order ---------- */
 function orderPayload(){
